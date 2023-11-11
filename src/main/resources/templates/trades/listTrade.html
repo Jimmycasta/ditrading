@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Trades</title>
+    <style> hr {
+        height: 1px;
+        background-color: #ccc;
+        border: none;
+    } </style>
+    <link href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" rel="stylesheet">
+</head>
+<body class="bg-dark">
+<header th:insert="~{fragments/navbar.html::navbar}"></header>
+<br>
+
+<!-- Inicio encabezado -->
+<div class="card bg-dark border-secondary">
+    <div class="card-body">
+        <div class="text-light">
+            <h5>Trades - Abiertos/Cerrados</h5>
+        </div>
+        <hr>
+        <a class="btn btn-primary btn-sm" role="button" title="Abre nuevo trade"
+           style="font-size: 14px" th:href="@{/trades/new}">Nuevo/Trade</a>
+    </div>
+</div> <!-- Fin encabezado -->
+<br>
+
+<!-- inicio tabla -->
+<div class="card bg-dark border-secondary" style="font-size: 14px">
+    <div class="card-body">
+        <table class="table table-sm table-dark table-hover table-striped table-bordered">
+            <thead>
+            <tr class="text-center ">
+                <th scope="col">Trade</th>
+                <th scope="col">Símbolo</th>
+                <th scope="col">Cant</th>
+                <th scope="col">Intervalo</th>
+                <th scope="col">Posición</th>
+                <th scope="col">F/Compra</th>
+                <th scope="col">P/Compra</th>
+                <th scope="col">Estrategia</th>
+                <th scope="col">SL</th>
+                <th scope="col">R/R</th>
+                <th scope="col">F/Venta</th>
+                <th scope="col">TP</th>
+                <th scope="col">RoI %</th>
+                <th scope="col">PnL %</th>
+                <th scope="col">PnL $</th>
+                <th scope="col">Estado</th>
+                <th scope="col">Acción</th>
+            </tr>
+            </thead>
+            <tbody class="table-group-divider">
+            <tr class="text-center align-middle" th:each="trade : ${listTrade}">
+                <td th:text="${trade.idTrade}"></td>
+                <td th:text="${trade.symbol.nameSymbol}"></td>
+                <td th:text="${trade.assetsQuantity}"></td>
+                <td th:text="${trade.timeFrame.nameFrame}"></td>
+                <td th:text="${trade.position.namePosition}"></td>
+                <td th:text="${trade.entryDate}"></td>
+                <td th:text="${#numbers.formatCurrency(trade.entryPrice)}"></td>
+                <td th:text="${trade.strategy.nameStrategy}"></td>
+                <td th:text="${#numbers.formatCurrency(trade.stopLoss)}"></td>
+                <td th:text="${trade.riskReward}"></td>
+                <td th:text="${trade.exitDate} ? ${trade.exitDate} : '---' "></td>
+                <td th:text="${trade.takeProfit} ? ${#numbers.formatCurrency(trade.takeProfit)} : '---'"></td>
+                <!--Inicio td returnInvestment -->
+                <td th:if="${trade.returnInvestment != null and trade.returnInvestment >0}" th:class="text-success"
+                    th:text="${#numbers.formatDecimal(trade.returnInvestment,1,'COMMA',1,'POINT') + ' ' + '%'}">
+                </td>
+                <td th:unless="${trade.returnInvestment != null and trade.returnInvestment >0}" th:class="text-danger"
+                    th:text="${trade.returnInvestment ==null} ? '---': ${#numbers.formatDecimal(trade.returnInvestment,1,'COMMA',1,'POINT') + ' ' + '%'}">
+                </td>
+                <!--Inicio td pnlPercentage -->
+                <td th:if="${trade.pnlPercentage != null and trade.pnlPercentage >0}" th:class="text-success"
+                    th:text="${#numbers.formatDecimal(trade.pnlPercentage,1,'COMMA',1,'POINT') + ' ' + '%'}">
+                </td>
+                <td th:unless="${trade.pnlPercentage != null and trade.pnlPercentage >0}" th:class="text-danger"
+                    th:text="${trade.pnlPercentage ==null} ? '---': ${#numbers.formatDecimal(trade.pnlPercentage,1,'COMMA',1,'POINT') + ' ' + '%'}">
+                </td>
+                <!--Inicio td pnlBalance -->
+                <td th:if="${trade.pnlBalance != null and trade.pnlBalance >0}"
+                    th:class="text-success"
+                    th:text="${#numbers.formatCurrency(trade.pnlBalance)}">
+                </td>
+                <td th:unless="${trade.pnlBalance != null and trade.pnlBalance >0}" th:class="text-danger"
+                    th:text="${trade.pnlBalance ==null} ? '---': ${#numbers.formatCurrency(trade.pnlBalance)}">
+                </td>
+                <!-- Fin -->
+
+                <td th:text="${trade.status.nameStatus}"></td>
+                <td class="text-center align-middle">
+                    <a class="btn btn-primary btn-sm" role="button" title="Editar trade"
+                       th:href="@{/trades/edit/{id} (id = ${trade.idTrade})}">
+                        <i class="fas fa-pencil-alt"></i></a>
+                    &nbsp
+                    <a class="btn btn-danger btn-sm" role="button" title="Eliminar trade"
+                       th:href="@{/trades/delete/{id} (id = ${trade.idTrade})}"
+                       onclick="return confirm('¿Desea eliminar el trade?')">
+                        <i class="far fa-trash-alt"></i></a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div> <!-- Fin card-body tabla -->
+</div> <!-- Fin card tabla -->
+<br>
+
+<!-- Inicio paginación -->
+<div class="row" th:if="${listTrade.totalPages > 0}">
+    <div class="md-2"></div>
+    <div class="md-8">
+        <nav aria-label="Pagination">
+            <ul class="pagination pagination-sm justify-content-center">
+
+                <li class="page-item" th:classappend="${prev == 0 ? 'disabled' : ''}">
+                    <a class="page-link" th:href="@{|/trades/list?page=${prev}|}">Anterior</a>
+                </li>
+
+                <li class="page-item" th:each="page : ${pages}"
+                    th:classappend="${current == page ? 'active' : ''}">
+                    <a class="page-link" th:href="@{|/trades/list?page=${page}|}" th:text="${page}"></a>
+                </li>
+
+                <li class="page-item" th:classappend="${current == last} ? 'disabled' : ''">
+                    <a class="page-link" th:href="@{|/trades/list?page=${next}|}">Siguiente</a>
+                </li>
+            </ul>
+        </nav>
+        <div th:class="col-md-2"></div>
+    </div>
+</div>
+<!-- Fin paginación -->
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<footer th:insert="~{fragments/footer::footer}"></footer>
+</body>
+</html>

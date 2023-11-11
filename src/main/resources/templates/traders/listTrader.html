@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title th:text="${title}"></title>
+    <style> hr {
+        height: 1px;
+        background-color: #ccc;
+        border: none;
+    } </style>
+    <link href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" rel="stylesheet">
+</head>
+<body class="bg-dark">
+<header th:insert="~{fragments/navbar.html::navbar}"></header>
+<br>
+<div class="container">
+    <div class="card bg-dark border-secondary">
+        <div class="card-body">
+            <div class="text-light">
+                <h5 th:text="${titleAction}"></h5>
+            </div>
+            <hr>
+            <div>
+                <a class="btn btn-primary btn-sm" role="button" title="Crear nuevo trader"
+                   style="font-size: 14px" th:href="@{/traders/new}">Nuevo</a>
+            </div>
+        </div>
+    </div>
+    <br>
+    <!-- inicio tabla -->
+    <div th:if="${message != null}" class="alert alert-success col-md" th:text="${message}" role="alert"></div>
+
+    <div class="card bg-dark border-secondary text-light " style="font-size: 14px">
+        <div class="card-body">
+            <table class="table table-sm table-dark table-hover table-striped table-bordered">
+                <thead>
+                <tr class="text-center ">
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Apellido</th>
+                    <th scope="col">Usuario</th>
+                    <th scope="col">Contraseña</th>
+                    <th scope="col">Correo</th>
+                    <th scope="col">Celular</th>
+                    <th scope="col">Estado</th>
+                </tr>
+                </thead>
+                <tbody class="table-group-divider">
+                <tr class="text-center align-middle" th:each="trader : ${listTrader}">
+                    <td th:text="${trader.firstName}"></td>
+                    <td th:text="${trader.lastName}"></td>
+                    <td th:text="${trader.userName}"></td>
+                    <td th:text="${trader.password}"></td>
+                    <td th:text="${trader.email}"></td>
+                    <td th:text="${trader.celular}"></td>
+                    <td th:text="${trader.active}"></td>
+                    <td class="text-center align-middle">
+                        <a class="btn btn-primary btn-sm" role="button" title="Editar trader"
+                           th:href="@{/traders/edit/{id} (id = ${trader.idTrader})}" >
+                            <i class="fas fa-pencil-alt"></i></a>
+                        &nbsp;
+                        &nbsp
+                        <a class="btn btn-danger btn-sm" role="button" title="Eliminar trader"
+                           th:href="@{/traders/delete/{id} (id = ${trader.idTrader})}"
+                           onclick="return confirm('¿Desea eliminar el trader?')">
+                            <i class="far fa-trash-alt"></i></a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+        </div>
+        <!-- Fin card-body tabla -->
+    </div>
+    <!-- Fin card tabla -->
+    <br>
+    <!-- Inicio paginación -->
+    <div class="row" th:if="${listTrader.totalPages > 0}">
+        <div class="md-2"></div>
+        <div class="md-8">
+            <nav aria-label="Pagination">
+                <ul class="pagination pagination-sm justify-content-center">
+
+                    <li class="page-item" th:classappend="${prev == 0 ? 'disabled' : ''}">
+                        <a class="page-link" th:href="@{|/traders/list?page=${prev}|}">Anterior</a>
+                    </li>
+
+                    <li class="page-item" th:each="page : ${pages}"
+                        th:classappend="${current == page ? 'active' : ''}">
+                        <a class="page-link" th:href="@{|/traders/list?page=${page}|}" th:text="${page}"></a>
+                    </li>
+
+                    <li class="page-item" th:classappend="${current == last} ? 'disabled' : ''">
+                        <a class="page-link" th:href="@{|/traders/list?page=${next}|}">Siguiente</a>
+                    </li>
+                </ul>
+            </nav>
+            <div th:class="col-md-2"></div>
+        </div>
+    </div>
+    <!-- Fin paginación -->
+</div>
+<!-- Fin container -->
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<footer th:insert="~{fragments/footer::footer}"></footer>
+</body>
+</html>

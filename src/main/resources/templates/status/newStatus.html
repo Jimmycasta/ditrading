@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title th:text="${title}"></title>
+    <style> hr{ height: 1px; background-color: #ccc; border: none; } </style>
+    <link href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" rel="stylesheet">
+</head>
+<body class="bg-dark">
+<header th:insert="~{fragments/navbar.html::navbar}"></header>
+<br>
+<div class="container">
+    <div class="card bg-dark border-secondary">
+        <div class="card-body">
+            <div class="text-light">
+                <h5 th:text="${titleAction}"></h5>
+            </div>
+            <hr>
+            <div>
+                <a class="btn btn-primary btn-sm" th:href="@{/status/list}" role="button"
+                   title="Regresa a lista de estados"
+                   style="font-size: 14px">Regresar</a>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="card bg-dark border-secondary text-light  " style="font-size: 14px">
+        <div class="card-body">
+            <form class="row g-3 needs-validation" method="post" style="font-size: 14px"
+                  novalidate th:action="@{/status/save}" th:object="${status}">
+
+                <div class="col-sm-3">
+                    <label for="nameStatus" class="form-label">Estado</label>
+                    <input type="text" class="form-control bg-secondary text-light" name="nameStatus" id="nameStatus"
+                           aria-describedby="nameStatus" style="font-size: 14px;"
+                           th:field="*{nameStatus}">
+                    <small th:if="${#fields.hasErrors('nameStatus')}" th:errors="*{nameStatus}" th:class="'form-text text-danger'"></small>
+                </div>
+                <div class="col-sm-3">
+                    <label for="detailStatus" class="form-label">Detalle</label>
+                    <input type="text" class="form-control bg-secondary text-light" name="detailStatus"
+                           id="detailStatus"
+                           aria-describedby="detailStatus" style="font-size: 14px;"
+                           th:field="*{detailStatus}">
+                    <small th:if="${#fields.hasErrors('detailStatus')}" th:errors="*{detailStatus}" th:class="'form-text text-danger'" ></small>
+                </div>
+                <input type="hidden"  th:field="*{idStatus}" id="idStatus" name="idStatus">
+                <div class="mb-2 ">
+                    <button class="btn btn-primary btn-sm" type="submit" style="font-size: 14px;">Guardar</button>
+                </div>
+            </form>
+        </div> <!-- Fin card-body del from -->
+    </div> <!-- Fin card del from -->
+</div> <!-- Fin container -->
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<footer th:insert="~{fragments/footer::footer}"></footer>
+</body>
+</html>
