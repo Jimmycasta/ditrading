@@ -24,6 +24,6 @@ public class ChartPatternEntity {
     @Column(name = "name_pattern",nullable = false, length = 50, unique = true)
     private String namePattern;
 
-    @Column(name = "detail_pattern", length = 50)
+    @Column(name = "detail_pattern", length = 100)
     private String detailPattern;
 }

@@ -30,7 +30,7 @@ public class StatusController {
         model.addAttribute("listStatus", listStatus);
         model.addAttribute("title", "Estado de trade");
         model.addAttribute("titleAction", "Estados del trade");
-        return "/status/listStatus";
+        return "status/listStatus";
 
     }
 
@@ -38,7 +38,7 @@ public class StatusController {
     public String newStatus(@ModelAttribute("status") StatusEntity status, Model model) {
         model.addAttribute("title", "Nuevo estado");
         model.addAttribute("titleAction", "Nuevo estado");
-        return "/status/newStatus";
+        return "status/newStatus";
 
     }
 

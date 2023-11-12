@@ -84,7 +84,7 @@ public class FrameController {
         model.addAttribute("frame", frame);
         model.addAttribute("title", "Editar Intervalo de tiempo");
         model.addAttribute("titleAction", "Editar intervalos de tiempo");
-        return "/frames/newFrame";
+        return "frames/newFrame";
 
     }
 }

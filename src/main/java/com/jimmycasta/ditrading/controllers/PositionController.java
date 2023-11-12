@@ -29,7 +29,7 @@ public class PositionController {
         model.addAttribute("listPosition", listPosition);
         model.addAttribute("title", "Posiciones");
         model.addAttribute("titleAction", "Posiciones Largo/Corto");
-        return "/positions/listPosition";
+        return "positions/listPosition";
 
     }
 
@@ -37,7 +37,7 @@ public class PositionController {
     public String newPosition(@ModelAttribute("position") PositionEntity position, Model model) {
         model.addAttribute("title", "Nueva posición");
         model.addAttribute("titleAction", "Nueva posición");
-        return "/positions/newPosition";
+        return "positions/newPosition";
 
     }
 
