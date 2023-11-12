@@ -65,8 +65,12 @@
                 <td th:text="${trade.strategy.nameStrategy}"></td>
                 <td th:text="${#numbers.formatCurrency(trade.stopLoss)}"></td>
                 <td th:text="${trade.riskReward}"></td>
-                <td th:text="${trade.exitDate} ? ${trade.exitDate} : '---' "></td>
-                <td th:text="${trade.takeProfit} ? ${#numbers.formatCurrency(trade.takeProfit)} : '---'"></td>
+                <!-- Inicio td exitDate -->
+                <td th:if="${trade.exitDate == null}" th:class="text-danger" th:text="'---'"></td>
+                <td th:unless="${trade.exitDate == null}" th:text="${trade.exitDate}"></td>
+                <!-- Inicio td takeProfit -->
+                <td th:if="${trade.takeProfit == null}" th:class="text-danger" th:text="'---'"></td>
+                <td th:unless="${trade.takeProfit == null}" th:text="${#numbers.formatCurrency(trade.takeProfit)}"></td>
                 <!--Inicio td returnInvestment -->
                 <td th:if="${trade.returnInvestment != null and trade.returnInvestment >0}" th:class="text-success"
                     th:text="${#numbers.formatDecimal(trade.returnInvestment,1,'COMMA',1,'POINT') + ' ' + '%'}">
