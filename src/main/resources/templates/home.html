@@ -6,9 +6,76 @@
     <title>Diario de trading</title>
 </head>
 <body th:class="bg-dark">
-
 <header th:insert="~{fragments/navbar.html::navbar}"></header>
 
+<div th:class="container">
+    <div class="card bg-dark border-dark" style="font-size: 18px">
+        <div class="card-body">
+
+            <!-- Inicio encabezado -->
+            <div class="card bg-dark border-secondary">
+                <div class="card-body">
+
+                    <div th:class="text-success">
+                        <h4>Diario de trading - ditrading</h4>
+                    </div>
+                    <hr th:class="text-secondary">
+                    <div th:class="text-light">
+                        <h5>Estadísticas de trading </h5>
+                    </div>
+                </div>
+            </div> <!-- Fin encabezado -->
+            <br>
+            <!-- Inicio estadísticas -->
+            <div class="card bg-dark border-secondary" style="font-size: 16px">
+                <div class="card-body">
+                    <table class="table table-dark table-striped">
+                        <thead>
+                        <tr>
+                            <!-- sin encabezado de tabla -->
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td >Trades en ganancia por mes</td>
+                            <td><span class="badge text-bg-danger" style="font-size: 15px">$100,000</span></td>
+                        </tr>
+                        <tr>
+                            <td>Trades en perdida por mes</td>
+                            <td><span class="badge text-bg-success" style="font-size: 15px">$100,000</span></td>
+                        </tr>
+                        <tr>
+                            <td>Ganancias/Perdidas (Pnl %) por mes</td>
+                            <td><span class="badge text-bg-success" style="font-size: 15px">$ 100,000</span></td>
+                        </tr>
+                        <tr>
+                            <td>Ganancias/Perdidas (Pnl $) por mes</td>
+                            <td><span class="badge text-bg-success" style="font-size: 15px">$ 100,000</span></td>
+                        </tr>
+                        <tr>
+                            <td>5 estrategias mas usadas</td>
+                            <td><span class="badge text-bg-success" style="font-size: 15px">$ 100,000</span></td>
+                        </tr>
+                        <tr>
+                            <td>5 instrumentos mas usados</td>
+                            <td><span class="badge text-bg-success" style="font-size: 15px">$ 100,000</span></td>
+                        </tr>
+                        <tr>
+                            <td>Total trades por mes</td>
+                            <td><span class="badge text-bg-success" style="font-size: 15px">$ 100,000</span></td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Fin estadísticas -->
+        </div>  <!--fin card body-->
+    </div> <!--fin card-->
+</div> <!--fin container-->
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<footer th:insert="~{fragments/footer::footer}"></footer>
 </body>
 </html>
