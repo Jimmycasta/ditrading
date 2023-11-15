@@ -8,6 +8,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,9 +27,25 @@ public class TradeServiceImpl implements TradeService {
         return tradeRepository.findAll();
     }
 
+
     @Override
     public Page<TradeEntity> getAllPage(Pageable pageable) {
         return tradeRepository.findAll(pageable);
+    }
+
+    @Override
+    public int getTradesProfitCurrentMth(LocalDate startDate, LocalDate endDate) {
+        return tradeRepository.getTradesProfitCurrentMth(startDate, endDate);
+    }
+
+    @Override
+    public int getTradesLossCurrentMth(LocalDate startDate, LocalDate endDate) {
+        return tradeRepository.getTradesLossCurrentMth(startDate, endDate);
+    }
+
+    @Override
+    public int getAllTradesCurrentMth(LocalDate startDate, LocalDate endDate) {
+        return tradeRepository.getAllTradesCurrentMth(startDate, endDate);
     }
 
     @Override

@@ -61,7 +61,7 @@
                 <td th:text="${trade.timeFrame.nameFrame}"></td>
                 <td th:text="${trade.position.namePosition}"></td>
                 <td th:text="${trade.entryDate}"></td>
-                <td th:text="${#numbers.formatCurrency(trade.entryPrice)}"></td>
+                <td th:text="${#numbers.formatDecimal(trade.entryPrice,1,'COMMA',2,'POINT') + ' ' + '$'}"></td>
                 <td th:text="${trade.strategy.nameStrategy}"></td>
                 <td th:text="${#numbers.formatCurrency(trade.stopLoss)}"></td>
                 <td th:text="${trade.riskReward}"></td>
