@@ -55,12 +55,12 @@
                     <td th:text="${trader.celular}"></td>
                     <td th:text="${trader.active}"></td>
                     <td class="text-center align-middle">
-                        <a class="btn btn-primary btn-sm" role="button" title="Editar trader"
+                        <a class="btn btn-outline-primary btn-sm" role="button" title="Editar trader"
                            th:href="@{/traders/edit/{id} (id = ${trader.idTrader})}" >
                             <i class="fas fa-pencil-alt"></i></a>
                         &nbsp;
                         &nbsp
-                        <a class="btn btn-danger btn-sm" role="button" title="Eliminar trader"
+                        <a class="btn btn-outline-danger btn-sm" role="button" title="Eliminar trader"
                            th:href="@{/traders/delete/{id} (id = ${trader.idTrader})}"
                            onclick="return confirm('¿Desea eliminar el trader?')">
                             <i class="far fa-trash-alt"></i></a>

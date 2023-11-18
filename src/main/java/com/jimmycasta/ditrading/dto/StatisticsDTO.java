@@ -2,6 +2,8 @@ package com.jimmycasta.ditrading.dto;
 
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 public class StatisticsDTO {
 
@@ -13,11 +15,13 @@ public class StatisticsDTO {
 
     private Double pnlBalanceCurrentMth;
 
-    private String topStrategiesCurrentMth;
-
-    private String topInstrumentCurrentMth;
-
     private int allTradesCurrentMonth;
+
+    private List<String> topStrategiesCurrentMth;
+
+    private List<String> topInstrumentCurrentMth;
+
+
 
 
 }

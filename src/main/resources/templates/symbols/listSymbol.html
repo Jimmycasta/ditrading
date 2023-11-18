@@ -53,12 +53,12 @@
                     <td th:text="${symbol.nameSymbol}"></td>
                     <td th:text="${symbol.detailSymbol}"></td>
                     <td class="text-center align-middle">
-                        <a class="btn btn-primary btn-sm" role="button" title="Editar símbolo"
+                        <a class="btn btn-outline-primary btn-sm" role="button" title="Editar símbolo"
                            th:href="@{/symbols/edit/{id} (id = ${symbol.idSymbol})}">
                             <i class="fas fa-pencil-alt"></i></a>
                         &nbsp;
                         &nbsp
-                        <a class="btn btn-danger btn-sm" role="button" title="Eliminar símbolo"
+                        <a class="btn btn-outline-danger btn-sm" role="button" title="Eliminar símbolo"
                            th:href="@{/symbols/delete/{id} (id = ${symbol.idSymbol})}"
                            onclick="return confirm('¿Desea eliminar el símbolo?')">
                             <i class="far fa-trash-alt"></i></a>

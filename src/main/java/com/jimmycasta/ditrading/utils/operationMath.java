@@ -19,7 +19,6 @@ public class operationMath {
         operationMath.tradeService = tradeService;
     }
 
-
     //Calcula la diferencia porcentual que hay entre dos números
     //Ejemplo: lastValue = 120, firstValue = 100 la diferencia es 20%
     public static Double diffPercent(Double takeProfit, Double entryPrice) {
@@ -44,7 +43,17 @@ public class operationMath {
         statisticsDTO.setTradesProfitCurrentMth(tradeService.getTradesProfitCurrentMth(startDate, endDate));
         statisticsDTO.setTradesLossCurrentMth(tradeService.getTradesLossCurrentMth(startDate, endDate));
         statisticsDTO.setAllTradesCurrentMonth(tradeService.getAllTradesCurrentMth(startDate, endDate));
+        statisticsDTO.setTopInstrumentCurrentMth(tradeService.getTopInstrumentCurrentMth());
+        statisticsDTO.setTopStrategiesCurrentMth(tradeService.getTopStrategiesCurrentMth());
         return statisticsDTO;
     }
+
+
+    //Devuelve la cantidad de decimales que tiene un número doble.
+    public static int getDecimalQuantity(double number) {
+        String numberString = String.valueOf(number);
+        return Integer.parseInt(String.valueOf(numberString.substring(numberString.indexOf('.') + 1).length()));
+    }
+
 
 }

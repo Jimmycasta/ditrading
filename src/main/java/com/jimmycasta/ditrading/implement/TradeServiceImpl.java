@@ -68,4 +68,14 @@ public class TradeServiceImpl implements TradeService {
         tradeRepository.deleteById(id);
 
     }
+
+    @Override
+    public List<String> getTopInstrumentCurrentMth() {
+        return tradeRepository.getTopInstrumentCurrentMth();
+    }
+
+    @Override
+    public List<String> getTopStrategiesCurrentMth() {
+        return tradeRepository.getTopStrategiesCurrentMth();
+    }
 }

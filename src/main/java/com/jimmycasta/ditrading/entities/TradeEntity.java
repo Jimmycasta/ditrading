@@ -68,6 +68,18 @@ public class TradeEntity implements Serializable {
     @Column(name = "risk_reward", length = 15)
     private String riskReward;
 
+    @Column(name = "entry_length",length = 15)
+    private int entryLength;
+
+    @Column(name = "stop_length", length = 15)
+    private int stopLength;
+
+    @Column(name = "profit_length", length = 15)
+    private int profitLength;
+
+    @Column(name = "pnl_length", length = 15)
+    private int pnlLength;
+
     @Column(length = 200)
     private String notes;
 

@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public interface TradeRepository extends JpaRepository<TradeEntity, Integer> {
 
@@ -23,4 +24,16 @@ public interface TradeRepository extends JpaRepository<TradeEntity, Integer> {
     @Query(value = "SELECT COUNT(id_symbol) FROM trades WHERE entry_date AND exit_date BETWEEN  :startDate AND :endDate", nativeQuery = true)
     int getAllTradesCurrentMth(@Param("startDate") LocalDate startDate, @Param("endDate") LocalDate endDate);
 
+    // Consulta el Top de los instrumentos o symbols mas usados.
+    @Query(value = "SELECT name_symbol FROM ditradingdb.symbols INNER JOIN ditradingdb.trades" +
+            " ON symbols.id_symbol = trades.id_symbol\n" +
+            "WHERE symbols.id_symbol = trades.id_symbol GROUP BY symbols.id_symbol" +
+            " ORDER BY sum(trades.id_symbol) desc limit 3", nativeQuery = true)
+    List<String> getTopInstrumentCurrentMth();
+
+    @Query(value = "SELECT name_strategy FROM ditradingdb.strategy INNER JOIN ditradingdb.trades" +
+            " ON strategy.id_strategy = trades.id_strategy\n" +
+            "WHERE strategy.id_strategy = trades.id_strategy GROUP BY strategy.id_strategy" +
+            " ORDER BY sum(trades.id_strategy) desc limit 3;",nativeQuery = true)
+    List<String>getTopStrategiesCurrentMth();
 }

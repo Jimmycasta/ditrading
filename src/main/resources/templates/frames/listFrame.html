@@ -46,12 +46,12 @@
                     <td th:text="${frame.nameFrame}"></td>
                     <td th:text="${frame.detailFrame}"></td>
                     <td class="text-center align-middle">
-                        <a class="btn btn-primary btn-sm" role="button" title="Editar Intervalo"
+                        <a class="btn btn-outline-primary btn-sm" role="button" title="Editar Intervalo"
                            th:href="@{/frames/edit/{id} (id = ${frame.idFrame})}" >
                             <i class="fas fa-pencil-alt"></i></a>
                         &nbsp;
                         &nbsp
-                        <a class="btn btn-danger btn-sm" role="button" title="Eliminar símbolo"
+                        <a class="btn btn-outline-danger btn-sm" role="button" title="Eliminar símbolo"
                            th:href="@{/frames/delete/{id} (id = ${frame.idFrame})}"
                            onclick="return confirm('¿Desea eliminar el Intervalo?')">
                             <i class="far fa-trash-alt"></i></a>

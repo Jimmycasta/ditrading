@@ -21,7 +21,6 @@ public class StrategyServiceImpl implements StrategyService {
         this.strategyRepository = strategyRepository;
     }
 
-
     @Override
     public Page<StrategyEntity> getAllPage(Pageable pageable) {
         return strategyRepository.findAll(pageable);

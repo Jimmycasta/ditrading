@@ -46,12 +46,12 @@
                     <td th:text="${status.nameStatus}"></td>
                     <td th:text="${status.detailStatus}"></td>
                     <td class="text-center align-middle">
-                        <a class="btn btn-primary btn-sm" role="button" title="Editar estado"
+                        <a class="btn btn-outline-primary btn-sm" role="button" title="Editar estado"
                            th:href="@{/status/edit/{id} (id = ${status.idStatus})}">
                             <i class="fas fa-pencil-alt"></i></a>
                         &nbsp;
                         &nbsp
-                        <a class="btn btn-danger btn-sm" role="button" title="Eliminar estado"
+                        <a class="btn btn-outline-danger btn-sm" role="button" title="Eliminar estado"
                            th:href="@{/status/delete/{id} (id = ${status.idStatus})}"
                            onclick="return confirm('¿Desea eliminar el estado?')">
                             <i class="far fa-trash-alt"></i></a>

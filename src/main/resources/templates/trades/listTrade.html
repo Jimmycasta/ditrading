@@ -27,30 +27,30 @@
     </div>
 </div> <!-- Fin encabezado -->
 <br>
-
+<div th:if="${message != null}" class="alert alert-success col-md" th:text="${message}" role="alert"></div>
 <!-- inicio tabla -->
 <div class="card bg-dark border-secondary" style="font-size: 14px">
     <div class="card-body">
         <table class="table table-sm table-dark table-hover table-striped table-bordered">
             <thead>
-            <tr class="text-center ">
-                <th scope="col">Trade</th>
-                <th scope="col">Símbolo</th>
-                <th scope="col">Cant</th>
-                <th scope="col">Intervalo</th>
-                <th scope="col">Posición</th>
-                <th scope="col">F/Compra</th>
-                <th scope="col">P/Compra</th>
-                <th scope="col">Estrategia</th>
-                <th scope="col">SL</th>
-                <th scope="col">R/R</th>
-                <th scope="col">F/Venta</th>
-                <th scope="col">TP</th>
-                <th scope="col">RoI %</th>
-                <th scope="col">PnL %</th>
-                <th scope="col">PnL $</th>
-                <th scope="col">Estado</th>
-                <th scope="col">Acción</th>
+            <tr class="text-center">
+                <th th:class="bg-success" scope="col">Trade#</th>
+                <th th:class="bg-success" scope="col">Símbolo</th>
+                <th th:class="bg-success" scope="col">Cant</th>
+                <th th:class="bg-success" scope="col">Intervalo</th>
+                <th th:class="bg-success" scope="col">Posición</th>
+                <th th:class="bg-success" scope="col">F/Compra</th>
+                <th th:class="bg-success" scope="col">P/Compra $</th>
+                <th th:class="bg-success" scope="col">Estrategia</th>
+                <th th:class="bg-success" scope="col">SL</th>
+                <th th:class="bg-success" scope="col">R/R</th>
+                <th th:class="bg-success" scope="col">F/Venta</th>
+                <th th:class="bg-success" scope="col">TP</th>
+                <th th:class="bg-success" scope="col">RoI %</th>
+                <th th:class="bg-success" scope="col">PnL %</th>
+                <th th:class="bg-success" scope="col">PnL $</th>
+                <th th:class="bg-success" scope="col">Estado</th>
+                <th th:class="bg-success" scope="col">Acción</th>
             </tr>
             </thead>
             <tbody class="table-group-divider">
@@ -61,16 +61,37 @@
                 <td th:text="${trade.timeFrame.nameFrame}"></td>
                 <td th:text="${trade.position.namePosition}"></td>
                 <td th:text="${trade.entryDate}"></td>
-                <td th:text="${#numbers.formatDecimal(trade.entryPrice,1,'COMMA',2,'POINT') + ' ' + '$'}"></td>
+
+                <!-- Inicio td entryPrice -->
+                <td th:text="${trade.entryLength} > 2 ? ${#numbers.formatDecimal(trade.entryPrice,1,'COMMA',6,'POINT') + ' ' + '$'}
+                  : ${#numbers.formatDecimal(trade.entryPrice,1,'COMMA',2,'POINT') + ' ' + '$'}"
+                    th:class="text-light"></td>
+                <!-- fin td entryPrice -->
+
                 <td th:text="${trade.strategy.nameStrategy}"></td>
-                <td th:text="${#numbers.formatCurrency(trade.stopLoss)}"></td>
+
+                <!-- Inicio td stopLoss -->
+                <td th:text="${trade.stopLength} > 2  ? ${#numbers.formatDecimal(trade.stopLoss,1,'COMMA',6,'POINT') + ' ' + '$'}
+                  : ${#numbers.formatDecimal(trade.stopLoss,1,'COMMA',2,'POINT') + ' ' + '$'}  "></td>
+                <!-- fin td stopLoss -->
+
                 <td th:text="${trade.riskReward}"></td>
+
                 <!-- Inicio td exitDate -->
                 <td th:if="${trade.exitDate == null}" th:class="text-danger" th:text="'---'"></td>
                 <td th:unless="${trade.exitDate == null}" th:text="${trade.exitDate}"></td>
+
                 <!-- Inicio td takeProfit -->
-                <td th:if="${trade.takeProfit == null}" th:class="text-danger" th:text="'---'"></td>
-                <td th:unless="${trade.takeProfit == null}" th:text="${#numbers.formatCurrency(trade.takeProfit)}"></td>
+                <td th:if="${trade.takeProfit != null and trade.takeProfit > 0 }" th:class="text-light"
+                    th:text="${trade.profitLength > 2} ? ${#numbers.formatDecimal(trade.takeProfit,1,'COMMA',6,'POINT') + ' ' + '$'}
+                     : ${#numbers.formatDecimal(trade.takeProfit,1,'COMMA',2,'POINT') + ' ' + '$'}">
+                </td>
+                <td th:unless="${trade.takeProfit != null and trade.takeProfit > 0}" th:class="text-danger"
+                    th:text="${trade.profitLength < 2 and trade.takeProfit == null} ? '---'
+                    : ${#numbers.formatDecimal(trade.takeProfit,1,'COMMA',6,'POINT') + ' ' + '$'} ">
+                </td>
+                <!-- Fin td takeProfit -->
+
                 <!--Inicio td returnInvestment -->
                 <td th:if="${trade.returnInvestment != null and trade.returnInvestment >0}" th:class="text-success"
                     th:text="${#numbers.formatDecimal(trade.returnInvestment,1,'COMMA',1,'POINT') + ' ' + '%'}">
@@ -78,6 +99,7 @@
                 <td th:unless="${trade.returnInvestment != null and trade.returnInvestment >0}" th:class="text-danger"
                     th:text="${trade.returnInvestment ==null} ? '---': ${#numbers.formatDecimal(trade.returnInvestment,1,'COMMA',1,'POINT') + ' ' + '%'}">
                 </td>
+
                 <!--Inicio td pnlPercentage -->
                 <td th:if="${trade.pnlPercentage != null and trade.pnlPercentage >0}" th:class="text-success"
                     th:text="${#numbers.formatDecimal(trade.pnlPercentage,1,'COMMA',1,'POINT') + ' ' + '%'}">
@@ -85,23 +107,25 @@
                 <td th:unless="${trade.pnlPercentage != null and trade.pnlPercentage >0}" th:class="text-danger"
                     th:text="${trade.pnlPercentage ==null} ? '---': ${#numbers.formatDecimal(trade.pnlPercentage,1,'COMMA',1,'POINT') + ' ' + '%'}">
                 </td>
-                <!--Inicio td pnlBalance -->
-                <td th:if="${trade.pnlBalance != null and trade.pnlBalance >0}"
-                    th:class="text-success"
-                    th:text="${#numbers.formatCurrency(trade.pnlBalance)}">
-                </td>
-                <td th:unless="${trade.pnlBalance != null and trade.pnlBalance >0}" th:class="text-danger"
-                    th:text="${trade.pnlBalance ==null} ? '---': ${#numbers.formatCurrency(trade.pnlBalance)}">
-                </td>
-                <!-- Fin -->
+                <!--Fin td pnlPercentage -->
 
-                <td th:text="${trade.status.nameStatus}"></td>
+                <!-- Inicio td pnlBalance -->
+                <td th:if="${trade.pnlBalance != null and trade.pnlBalance > 0 }" th:class="text-success"
+                    th:text="${trade.pnlLength > 2} ? ${#numbers.formatDecimal(trade.pnlBalance,1,'COMMA',6,'POINT') + ' ' + '$'}
+                     : ${#numbers.formatDecimal(trade.pnlBalance,1,'COMMA',2,'POINT') + ' ' + '$'}">
+                </td>
+                <td th:unless="${trade.pnlBalance != null and trade.pnlBalance > 0}" th:class="text-danger"
+                    th:text="${trade.pnlLength < 2 and trade.pnlBalance == null} ? ${#numbers.formatDecimal(trade.pnlBalance,1,'COMMA',6,'POINT') + ' ' + '$'} : ${#numbers.formatDecimal(trade.pnlBalance,1,'COMMA',2,'POINT') + ' ' + '$'} ">
+                </td>
+                <!-- Fin  td pnlBalance -->
+
+                <td th:text="${trade.status.nameStatus}" style="font-size: 12px"></td>
                 <td class="text-center align-middle">
-                    <a class="btn btn-primary btn-sm" role="button" title="Editar trade"
+                    <a class="btn btn-outline-primary btn-sm" role="button" title="Editar trade"
                        th:href="@{/trades/edit/{id} (id = ${trade.idTrade})}">
                         <i class="fas fa-pencil-alt"></i></a>
                     &nbsp
-                    <a class="btn btn-danger btn-sm" role="button" title="Eliminar trade"
+                    <a class="btn btn-outline-danger btn-sm" role="button" title="Eliminar trade"
                        th:href="@{/trades/delete/{id} (id = ${trade.idTrade})}"
                        onclick="return confirm('¿Desea eliminar el trade?')">
                         <i class="far fa-trash-alt"></i></a>

@@ -25,4 +25,8 @@ public interface TradeService {
     TradeEntity save(TradeEntity trade);
 
     void delete(int id);
+
+    List<String> getTopInstrumentCurrentMth();
+
+    List<String> getTopStrategiesCurrentMth();
 }
