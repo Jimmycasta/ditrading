@@ -11,8 +11,6 @@ public class StatisticsDTO {
 
     private int tradesLossCurrentMth;
 
-    private Double pnlPercentageCurrentMth;
-
     private Double pnlBalanceCurrentMth;
 
     private int allTradesCurrentMonth;

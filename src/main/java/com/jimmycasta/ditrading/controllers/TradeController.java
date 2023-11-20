@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -114,8 +115,6 @@ public class TradeController {
             attributes.addFlashAttribute("message", "Trade guardado");
             trade.setEntryLength(operationMath.getDecimalQuantity(trade.getEntryPrice()));
             trade.setStopLength(operationMath.getDecimalQuantity(trade.getStopLoss()));
-            trade.setEntryBalance(operationMath.getLastExitBalance());
-
             tradeService.save(trade);
             return "redirect:/trades/list";
 
@@ -124,13 +123,13 @@ public class TradeController {
         trade.setReturnInvestment(operationMath.diffPercent(trade.getTakeProfit(), trade.getEntryPrice()));
         trade.setPnlBalance(operationMath.calculatePnl(trade.getTakeProfit(), trade.getEntryPrice(), trade.getAssetsQuantity()));
         trade.setPnlPercentage(operationMath.diffPercent(trade.getTakeProfit(), trade.getEntryPrice()));
-
-        trade.setExitBalance(operationMath.getExitBalance(trade.getTakeProfit(), trade.getEntryPrice(), trade.getAssetsQuantity()));
+        trade.setLastBalance(operationMath.getLastBalance(trade.getTakeProfit(), trade.getEntryPrice(), trade.getAssetsQuantity()));
 
         trade.setProfitLength(operationMath.getDecimalQuantity(trade.getTakeProfit()));
         trade.setEntryLength(operationMath.getDecimalQuantity(trade.getEntryPrice()));
         trade.setStopLength(operationMath.getDecimalQuantity(trade.getStopLoss()));
         trade.setPnlLength(operationMath.getDecimalQuantity(trade.getPnlBalance()));
+        trade.setDateTime(LocalDateTime.now());
         tradeService.save(trade);
         return "redirect:/trades/list";
     }

@@ -19,6 +19,9 @@ public class operationMath {
         operationMath.tradeService = tradeService;
     }
 
+    static LocalDate startDate = LocalDate.now().with(TemporalAdjusters.firstDayOfMonth());
+    static LocalDate endDate = LocalDate.now().with(TemporalAdjusters.lastDayOfMonth());
+
     //Calcula la diferencia porcentual que hay entre dos números
     //Ejemplo: lastValue = 120, firstValue = 100 la diferencia es 20%
     public static Double diffPercent(Double takeProfit, Double entryPrice) {
@@ -37,9 +40,7 @@ public class operationMath {
     //Envía instancia statisticsDTO con los datos de estadísticas del trading mes actual a la vista home.
     public static StatisticsDTO getAllStatistics() {
         StatisticsDTO statisticsDTO = new StatisticsDTO();
-        LocalDate startDate = LocalDate.now().with(TemporalAdjusters.firstDayOfMonth());
-        LocalDate endDate = LocalDate.now().with(TemporalAdjusters.lastDayOfMonth());
-
+        statisticsDTO.setPnlBalanceCurrentMth(tradeService.getLastBalance(startDate, endDate));
         statisticsDTO.setTradesProfitCurrentMth(tradeService.getTradesProfitCurrentMth(startDate, endDate));
         statisticsDTO.setTradesLossCurrentMth(tradeService.getTradesLossCurrentMth(startDate, endDate));
         statisticsDTO.setAllTradesCurrentMonth(tradeService.getAllTradesCurrentMth(startDate, endDate));
@@ -55,21 +56,10 @@ public class operationMath {
         return Integer.parseInt(String.valueOf(numberString.substring(numberString.indexOf('.') + 1).length()));
     }
 
-    //Retorna el balance o efectivo de entrada en un nuevo trade, si es el primer trade retorna "0.0".
-    public static double getLastExitBalance() {
-        double lastExitBalance = tradeService.getLastExitBalance();
-        if (lastExitBalance != 0) {
-            return lastExitBalance;
-        }
-        return 0;
-    }
-
-    public static double getExitBalance(Double takeProfit, Double entryPrice, Double assetsQuantity) {
-        System.out.println("Ultimo Exit Balance" + " " + tradeService.getLastExitBalance());
-        System.out.println("Profit trade actual: " + " " + (takeProfit - entryPrice) * assetsQuantity );
-        System.out.println("Suma: " + " " + (tradeService.getLastExitBalance()) + ((takeProfit - entryPrice) * assetsQuantity));
-
-        return  (tradeService.getLastExitBalance()) + ((takeProfit - entryPrice) * assetsQuantity);
+    //Retorna el último balance(last_balance) que es la suma de los Pnl positivos y resta de los negativos
+    // de cada unos de los trades cerrados hasta ese momento.
+    public static double getLastBalance(Double takeProfit, Double entryPrice, Double assetsQuantity) {
+        return (tradeService.getLastBalance(startDate, endDate)) + ((takeProfit - entryPrice) * assetsQuantity);
     }
 
 

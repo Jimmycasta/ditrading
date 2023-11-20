@@ -42,20 +42,24 @@
                         <tbody>
 
                         <tr>
-                            <td>Porcentaje Ganancias/Perdidas</td>
-                            <td><span class="badge text-bg-primary" style="font-size: 15px">0</span></td>
-                        </tr>
+                            <td >Balance Ganancias/Perdidas</td>
+                            <td>
+                                <span th:if="${statisticsDTO.getPnlBalanceCurrentMth() < 0}"
+                                      class="badge rounded-pill text-bg-danger" style="font-size: 14px"
+                                      th:text="${#numbers.formatCurrency(statisticsDTO.getPnlBalanceCurrentMth())}"></span>
 
-                        <tr>
-                            <td>Balance Ganancias/Perdidas</td>
-                            <td><span class="badge text-bg-primary" style="font-size: 15px">0</span></td>
+                            <span th:unless="${statisticsDTO.getPnlBalanceCurrentMth() < 0}"
+                                  class="badge rounded-pill text-bg-success" style="font-size: 15px"
+                                  th:text="${#numbers.formatCurrency(statisticsDTO.getPnlBalanceCurrentMth())}"></span>
+                            </td>
+
                         </tr>
 
                         <tr>
                             <td>Top 3 Estrategias</td>
                             <td>
                                 <span th:each="strategy : ${statisticsDTO.getTopStrategiesCurrentMth()}"
-                                      th:text="${strategy}" class="badge text-bg-primary"
+                                      th:text="${strategy}" class="badge rounded-pill text-bg-primary"
                                       style="font-size: 12px; margin-right: 10px;">
                                 </span>
                             </td>
@@ -65,7 +69,7 @@
                             <td>Top 3 Instrumentos</td>
                             <td>
                                 <span th:each="instrument : ${statisticsDTO.getTopInstrumentCurrentMth()}"
-                                      th:text="${instrument}" class="badge text-bg-primary"
+                                      th:text="${instrument}" class="badge rounded-pill text-bg-primary"
                                       style="font-size: 12px; margin-right: 10px;">
                                 </span>
                             </td>
@@ -74,20 +78,20 @@
                         <tr>
                             <td>Trades en ganancia</td>
                             <td><span th:text="${statisticsDTO.getTradesProfitCurrentMth()}"
-                                      class="badge text-bg-success" style="font-size: 15px"></span>
+                                      class="badge rounded-pill text-bg-success" style="font-size: 14px"></span>
                             </td>
                         </tr>
 
                         <tr>
                             <td>Trades en perdida</td>
                             <td><span th:text="${statisticsDTO.getTradesLossCurrentMth()}"
-                                      class="badge text-bg-danger" style="font-size: 15px"></span>
+                                      class="badge rounded-pill text-bg-danger" style="font-size: 14px"></span>
                             </td>
 
                         <tr>
                             <td>Total trades</td>
                             <td><span th:text="${statisticsDTO.getAllTradesCurrentMonth()}"
-                                      class="badge text-bg-primary" style="font-size: 16px"></span></td>
+                                      class="badge rounded-pill text-bg-primary" style="font-size: 16px"></span></td>
                         </tr>
 
                         </tbody>

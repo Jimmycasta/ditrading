@@ -1,6 +1,7 @@
 package com.jimmycasta.ditrading.repositories;
 
 import com.jimmycasta.ditrading.entities.TradeEntity;
+import jakarta.ejb.Local;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -40,9 +41,10 @@ public interface TradeRepository extends JpaRepository<TradeEntity, Integer> {
     List<String> getTopStrategiesCurrentMth();
 
 
-    //Retorna el balance de salida (exit_balance) del último trade, que será el balance de entrada (entry_balance) del siguiente trade
-    @Query(value = "select exit_balance from ditradingdb.trades order by id_trade desc limit 1", nativeQuery = true)
-    Optional<Double>getLastExitBalance();
+    //Retorna el último balance (last_balance) es la suma de todos los trades cerrados
+    @Query(value = "SELECT last_balance FROM ditradingdb.trades WHERE date_time = (SELECT MAX(date_time) from ditradingdb.trades" +
+            " WHERE entry_date AND exit_date BETWEEN :startDate AND :endDate);", nativeQuery = true)
+    Optional<Double> getLastBalance(@Param("startDate") LocalDate startDate, @Param("endDate")LocalDate endDate);
 
 
 

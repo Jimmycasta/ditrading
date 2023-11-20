@@ -81,14 +81,12 @@ public class TradeServiceImpl implements TradeService {
     }
 
     @Override
-    public double getLastExitBalance() {
-        Optional<Double> optional = tradeRepository.getLastExitBalance();
+    public double getLastBalance(LocalDate startDate, LocalDate endDate) {
+        Optional<Double> optional = tradeRepository.getLastBalance(startDate,endDate);
         if (optional.isPresent()) {
             return optional.get();
         }
         return 0;
     }
-
-
 }
 

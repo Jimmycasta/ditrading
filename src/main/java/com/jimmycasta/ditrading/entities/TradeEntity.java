@@ -10,6 +10,7 @@ import lombok.Setter;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "trades")
@@ -23,9 +24,6 @@ public class TradeEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_trade", nullable = false, length = 15)
     private Integer idTrade;
-
-    @Column(name = "trade_number", length = 15)
-    private Integer tradeNumber;
 
     @NotNull(message = "Ingrese cantidad")
     @Column(name = "assets_quantity", length = 15)
@@ -45,11 +43,8 @@ public class TradeEntity implements Serializable {
     @Column(name = "take_profit", length = 15)
     private Double takeProfit;
 
-    @Column(name = "entry_balance", length = 50)
-    private Double entryBalance;
-
-    @Column(name = "exit_balance", length = 50)
-    private Double exitBalance;
+    @Column(name = "last_balance", length = 50)
+    private Double lastBalance;
 
     @Column(name = "return_investment", length = 15)
     private Double returnInvestment;
@@ -68,7 +63,7 @@ public class TradeEntity implements Serializable {
     @Column(name = "risk_reward", length = 15)
     private String riskReward;
 
-    @Column(name = "entry_length",length = 15)
+    @Column(name = "entry_length", length = 15)
     private int entryLength;
 
     @Column(name = "stop_length", length = 15)
@@ -82,6 +77,9 @@ public class TradeEntity implements Serializable {
 
     @Column(length = 200)
     private String notes;
+
+    @Column(name = "date_time")
+    private LocalDateTime dateTime;
 
     private String images;
 
