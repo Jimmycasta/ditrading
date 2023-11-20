@@ -7,6 +7,7 @@ import org.springframework.data.repository.query.Param;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 public interface TradeRepository extends JpaRepository<TradeEntity, Integer> {
 
@@ -24,16 +25,25 @@ public interface TradeRepository extends JpaRepository<TradeEntity, Integer> {
     @Query(value = "SELECT COUNT(id_symbol) FROM trades WHERE entry_date AND exit_date BETWEEN  :startDate AND :endDate", nativeQuery = true)
     int getAllTradesCurrentMth(@Param("startDate") LocalDate startDate, @Param("endDate") LocalDate endDate);
 
-    // Consulta el Top de los instrumentos o symbols mas usados.
+    // Consulta el Top de los instrumentos o symbols más usados.
     @Query(value = "SELECT name_symbol FROM ditradingdb.symbols INNER JOIN ditradingdb.trades" +
             " ON symbols.id_symbol = trades.id_symbol\n" +
             "WHERE symbols.id_symbol = trades.id_symbol GROUP BY symbols.id_symbol" +
             " ORDER BY sum(trades.id_symbol) desc limit 3", nativeQuery = true)
     List<String> getTopInstrumentCurrentMth();
 
+    // Consulta el Top de las estrategias más usados.
     @Query(value = "SELECT name_strategy FROM ditradingdb.strategy INNER JOIN ditradingdb.trades" +
             " ON strategy.id_strategy = trades.id_strategy\n" +
             "WHERE strategy.id_strategy = trades.id_strategy GROUP BY strategy.id_strategy" +
-            " ORDER BY sum(trades.id_strategy) desc limit 3;",nativeQuery = true)
-    List<String>getTopStrategiesCurrentMth();
+            " ORDER BY sum(trades.id_strategy) desc limit 3;", nativeQuery = true)
+    List<String> getTopStrategiesCurrentMth();
+
+
+    //Retorna el balance de salida (exit_balance) del último trade, que será el balance de entrada (entry_balance) del siguiente trade
+    @Query(value = "select exit_balance from ditradingdb.trades order by id_trade desc limit 1", nativeQuery = true)
+    Optional<Double>getLastExitBalance();
+
+
+
 }

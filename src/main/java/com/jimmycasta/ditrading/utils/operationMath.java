@@ -55,5 +55,22 @@ public class operationMath {
         return Integer.parseInt(String.valueOf(numberString.substring(numberString.indexOf('.') + 1).length()));
     }
 
+    //Retorna el balance o efectivo de entrada en un nuevo trade, si es el primer trade retorna "0.0".
+    public static double getLastExitBalance() {
+        double lastExitBalance = tradeService.getLastExitBalance();
+        if (lastExitBalance != 0) {
+            return lastExitBalance;
+        }
+        return 0;
+    }
+
+    public static double getExitBalance(Double takeProfit, Double entryPrice, Double assetsQuantity) {
+        System.out.println("Ultimo Exit Balance" + " " + tradeService.getLastExitBalance());
+        System.out.println("Profit trade actual: " + " " + (takeProfit - entryPrice) * assetsQuantity );
+        System.out.println("Suma: " + " " + (tradeService.getLastExitBalance()) + ((takeProfit - entryPrice) * assetsQuantity));
+
+        return  (tradeService.getLastExitBalance()) + ((takeProfit - entryPrice) * assetsQuantity);
+    }
+
 
 }

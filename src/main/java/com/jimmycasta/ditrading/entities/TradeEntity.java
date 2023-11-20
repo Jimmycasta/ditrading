@@ -45,10 +45,10 @@ public class TradeEntity implements Serializable {
     @Column(name = "take_profit", length = 15)
     private Double takeProfit;
 
-    @Column(name = "entry_balance", length = 15)
+    @Column(name = "entry_balance", length = 50)
     private Double entryBalance;
 
-    @Column(name = "exit_balance", length = 15)
+    @Column(name = "exit_balance", length = 50)
     private Double exitBalance;
 
     @Column(name = "return_investment", length = 15)

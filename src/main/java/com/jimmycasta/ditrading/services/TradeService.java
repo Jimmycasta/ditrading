@@ -6,6 +6,7 @@ import org.springframework.data.domain.Pageable;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 
 public interface TradeService {
@@ -29,4 +30,9 @@ public interface TradeService {
     List<String> getTopInstrumentCurrentMth();
 
     List<String> getTopStrategiesCurrentMth();
+
+   double getLastExitBalance();
+
+
+
 }

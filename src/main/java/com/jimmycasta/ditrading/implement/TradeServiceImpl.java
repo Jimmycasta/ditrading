@@ -77,5 +77,18 @@ public class TradeServiceImpl implements TradeService {
     @Override
     public List<String> getTopStrategiesCurrentMth() {
         return tradeRepository.getTopStrategiesCurrentMth();
+
     }
+
+    @Override
+    public double getLastExitBalance() {
+        Optional<Double> optional = tradeRepository.getLastExitBalance();
+        if (optional.isPresent()) {
+            return optional.get();
+        }
+        return 0;
+    }
+
+
 }
+
