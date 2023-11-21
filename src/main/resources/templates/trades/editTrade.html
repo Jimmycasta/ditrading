@@ -155,7 +155,7 @@
             <div class="col-sm-2 w-auto">
                 <label for="status" class="form-label">Estado</label>
                 <select class="form-select form-select-sm" aria-label="status" id="status"
-                        name="status" th:field="*{status}" >
+                        name="status" th:field="*{status}">
                     <option th:each="status : ${listStatus}"
                             th:value="${status.idStatus}"
                             th:text="${status.nameStatus}"></option>

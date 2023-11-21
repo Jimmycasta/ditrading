@@ -159,7 +159,7 @@
                 </small>
 
             </div>
-            <!-- input Estado -->
+            <!-- input Estado ---- es para borrar cuando haga el otro status  -->
             <div class="col-sm-2 w-auto">
                 <select class="form-select form-select-sm" aria-label="status" id="status"
                         name="status" th:field="*{status}" style="display: none">
@@ -169,6 +169,8 @@
                             th:text="${status.nameStatus}"></option>
                 </select>
             </div>
+
+
             <input type="hidden" th:field="*{idTrade}" id="idTrade" name="idTrade">
             <div class="mb-2 ">
                 <button class="btn btn-primary btn-sm" type="submit" style="font-size: 14px;">Guardar</button>

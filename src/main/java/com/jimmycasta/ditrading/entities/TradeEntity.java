@@ -75,6 +75,9 @@ public class TradeEntity implements Serializable {
     @Column(name = "pnl_length", length = 15)
     private int pnlLength;
 
+    @Column(name = "is_open")
+    private Boolean isOpen = true;
+
     @Column(length = 200)
     private String notes;
 
