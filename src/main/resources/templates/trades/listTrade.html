@@ -119,34 +119,41 @@
                 </td>
                 <!-- Fin  td pnlBalance -->
 
+                <!-- Inicio status Abierto/Cerrado -->
+                <td>
+                    <span th:if="${trade.isOpen}"
+                          th:text="Abierto" class="badge rounded-pill text-bg-success" style="font-size: 12px">
+                    </span>
+                    <span th:unless="${trade.isOpen}"
+                          th:text="Cerrado" class="badge rounded-pill text-bg-secondary " style="font-size: 12px">
+                    </span>
+                </td> <!--Fin status Abierto/Cerrado-->
+
                 <!-- Inicio botones acción -->
-                <td th:if="${trade.isOpen}" style="font-size: 12px"> </td>
-                <td class="text-center align-middle">
+                <td th:if="${trade.isOpen}" class="text-center align-middle">
                     <a class="btn btn-outline-primary btn-sm" role="button" title="Editar trade"
                        th:href="@{/trades/edit/{id} (id = ${trade.idTrade})}">
-                        <i class="fas fa-pencil-alt"></i></a>
+                        <i class="fas fa-pencil-alt"></i>
+                    </a>
                     &nbsp
                     <a class="btn btn-outline-danger btn-sm" role="button" title="Eliminar trade"
                        th:href="@{/trades/delete/{id} (id = ${trade.idTrade})}"
                        onclick="return confirm('¿Desea eliminar el trade?')">
                         <i class="far fa-trash-alt"></i>
                     </a>
-            </td>
-
-                <td th:unless="${trade.isOpen}" style="font-size: 12px"> </td>
-                <td class="text-center align-middle">
+                </td>
+                <td th:unless="${trade.isOpen}" class="text-center align-middle">
                     <a class="btn btn-outline-secondary btn-sm disabled" role="button" title="Editar trade"
                        th:href="@{/trades/edit/{id} (id = ${trade.idTrade})}">
-                        <i class="fas fa-pencil-alt"></i></a>
+                        <i class="fas fa-pencil-alt"></i>
+                    </a>
                     &nbsp
                     <a class="btn btn-outline-secondary btn-sm disabled" role="button" title="Eliminar trade"
                        th:href="@{/trades/delete/{id} (id = ${trade.idTrade})}"
                        onclick="return confirm('¿Desea eliminar el trade?')">
                         <i class="far fa-trash-alt"></i>
                     </a>
-            </td>
-                </td>  <!-- Fin td isOpen -->
-
+                </td> <!-- Fin botones acción -->
             </tr>
             </tbody>
         </table>
