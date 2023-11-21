@@ -119,22 +119,17 @@
                 </td>
                 <!-- Fin  td pnlBalance -->
 
-                <!-- Inicio td status-->
                 <td th:text="${trade.status.nameStatus}" style="font-size: 12px"></td>
                 <td class="text-center align-middle">
                     <a class="btn btn-outline-primary btn-sm" role="button" title="Editar trade"
                        th:href="@{/trades/edit/{id} (id = ${trade.idTrade})}">
-                        <i class="fas fa-pencil-alt"></i>
-                    </a>
+                        <i class="fas fa-pencil-alt"></i></a>
                     &nbsp
                     <a class="btn btn-outline-danger btn-sm" role="button" title="Eliminar trade"
                        th:href="@{/trades/delete/{id} (id = ${trade.idTrade})}"
                        onclick="return confirm('¿Desea eliminar el trade?')">
-                        <i class="far fa-trash-alt"></i>
-                    </a>
+                        <i class="far fa-trash-alt"></i></a>
                 </td>
-                <!-- Fin td status-->
-
             </tr>
             </tbody>
         </table>

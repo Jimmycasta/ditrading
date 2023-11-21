@@ -81,6 +81,9 @@ public class TradeEntity implements Serializable {
     @Column(length = 200)
     private String notes;
 
+    @Column(name = "is_open")
+    private Boolean isOpen = true;
+
     @Column(name = "date_time")
     private LocalDateTime dateTime;
 
@@ -102,16 +105,8 @@ public class TradeEntity implements Serializable {
     private PositionEntity position;
 
     @ManyToOne
-    @JoinColumn(name = "id_status")
-    private StatusEntity status;
-
-    @ManyToOne
     @JoinColumn(name = "id_trader")
     private TraderEntity trader;
-
-    @ManyToOne
-    @JoinColumn(name = "id_pnl_result")
-    private PnLResultEntity pnlResult;
 
     @NotNull(message = "Ingrese estrategia")
     @ManyToOne
