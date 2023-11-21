@@ -35,7 +35,7 @@
               novalidate th:action="@{/trades/save}" th:object="${trade}">
 
             <!-- input symbol -->
-            <div class="col-sm-2">
+            <div class="col-sm-1 w-auto">
                 <label for="symbol" class="form-label">Símbolo</label>
                 <select class="form-select form-select-sm bg-secondary" disabled required aria-label="symbol"
                         id="symbol" th:field="*{symbol}">
@@ -48,7 +48,7 @@
             </div>
 
             <!-- input Cantidad -->
-            <div class="col-sm-1">
+            <div class="col-sm-2 w-auto">
                 <label for="assetsQuantity" class="form-label">Cantidad</label>
                 <input type="text" class="form-control form-control-sm bg-secondary" disabled name="assetsQuantity"
                        id="assetsQuantity" aria-describedby="assetsQuantity" style="font-size: 14px;"
@@ -57,7 +57,7 @@
             </div>
 
             <!-- input Intervalo -->
-            <div class="col-sm-1">
+            <div class="col-sm-1 w-auto">
                 <label for="timeFrame" class="form-label">Intervalo</label>
                 <select class="form-select form-select-sm bg-secondary" disabled aria-label="Seleccione un frame"
                         id="timeFrame" name="timeFrame" th:field="*{timeFrame}">
@@ -70,7 +70,7 @@
             </div>
 
             <!-- input Posición -->
-            <div class="col-sm-1">
+            <div class="col-sm-1 w-auto">
                 <label for="namePosition" class="form-label">Posición</label>
                 <select class="form-select form-select-sm bg-secondary" disabled aria-label="Seleccione una posición"
                         id="namePosition" name="namePosition" th:field="*{position}">
@@ -84,17 +84,15 @@
             </div>
 
             <!-- input entryDate-->
-            <div class="col-sm-2">
+            <div class="col-sm-2 w-auto">
                 <label for="entryDate" class="form-label">Fecha/Compra</label>
                 <input type="date" class="form-control form-control-sm bg-secondary" readonly
                        name="entryDate" id="entryDate" aria-describedby="entryDate" style="font-size: 14px;"
                        th:value="${trade.entryDate}">
-                <!-- <small th:if="${#fields.hasErrors('detailSymbol')}" th:errors="*{detailSymbol}"
-                        th:class="'form-text text-danger'"></small> -->
             </div>
 
             <!-- input Precio/Compra -->
-            <div class="col-sm-2">
+            <div class="col-sm-2 w-auto">
                 <label for="entryPrice" class="form-label">Precio/Compra</label>
                 <input type="text" class="form-control form-control-sm bg-secondary" disabled name="entryPrice"
                        id="entryPrice" aria-describedby="entryPrice" style="font-size: 14px;"
@@ -103,7 +101,7 @@
             <input type="hidden" th:field="*{entryPrice}">
 
             <!-- input Strategy -->
-            <div class="col-sm-2">
+            <div class="col-sm-2 w-auto">
                 <label for="strategy" class="form-label">Strategy</label>
                 <select class="form-select form-select-sm bg-secondary" disabled aria-label="strategy"
                         id="strategy" th:field="*{strategy}">
@@ -116,7 +114,7 @@
             </div>
 
             <!-- input riskReward-->
-            <div class="col-sm-1">
+            <div class="col-sm-1" style="width: 80px">
                 <label for="riskReward" class="form-label">R/R</label>
                 <input type="text" class="form-control form-control-sm bg-secondary" name="riskReward" readonly
                        id="riskReward" aria-describedby="riskReward" style="font-size: 14px;"
@@ -125,8 +123,8 @@
                         th:class="'form-text text-danger'"></small> -->
             </div>
 
-            <!-- input -->
-            <div class="col-sm-2">
+            <!-- input stopLoss -->
+            <div class="col-sm-2 w-auto">
                 <label for="stopLoss" class="form-label">Stop Loss</label>
                 <input type="text" class="form-control form-control-sm" name="stopLoss"
                        id="stopLoss" aria-describedby="stopLoss" style="font-size: 14px;"
@@ -135,8 +133,8 @@
                         th:class="'form-text text-danger'"></small> -->
             </div>
 
-            <!-- input -->
-            <div class="col-sm-2">
+            <!-- input takeProfit-->
+            <div class="col-sm-2 w-auto">
                 <label for="takeProfit" class="form-label">Take/Profit</label>
                 <input type="text" class="form-control form-control-sm" name="takeProfit"
                        id="takeProfit" aria-describedby="takeProfit" style="font-size: 14px;"
@@ -146,33 +144,24 @@
             </div>
 
             <!-- input exitDate-->
-            <div class="col-sm-2">
+            <div class="col-sm-2 w-auto">
                 <label for="exitDate" class="form-label">Fecha/Venta</label>
                 <input type="date" class="form-control form-control-sm"
                        name="exitDate" id="exitDate" aria-describedby="exitDate" style="font-size: 14px;"
                        th:value="*{exitDate}">
             </div>
 
-
             <!-- input status -->
-
-            <div class=" col-sm-2 card bg-dark border-secondary text-light" style="font-size: 14px; width: 13rem; height: 2rem ">
-                <div class="card-body" >
-
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                    <label class="form-check-label" for="flexRadioDefault1" style="margin-right :20px">
-                        Abierto
-                    </label>
-
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
-                    <label class="form-check-label" for="flexRadioDefault2">
-                        Cerrado
-                    </label>
-                </div>
+            <div class="col-sm-2 w-auto">
+                <label for="status" class="form-label">Estado</label>
+                <select class="form-select form-select-sm" aria-label="status" id="status"
+                        name="status" th:field="*{status}" >
+                    <option th:each="status : ${listStatus}"
+                            th:value="${status.idStatus}"
+                            th:text="${status.nameStatus}"></option>
+                </select>
             </div>
-
             <!--Fin input status -->
-
 
             <div class="mb-2 ">
                 <button class="btn btn-primary btn-sm" type="submit" style="font-size: 14px;">Guardar</button>

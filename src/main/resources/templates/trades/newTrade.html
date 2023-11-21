@@ -35,7 +35,7 @@
               novalidate th:action="@{/trades/save}" th:object="${trade}">
 
             <!-- input Símbolo -->
-            <div class="col-sm-2">
+            <div class="col-sm-2 w-auto">
                 <label for="symbol" class="form-label">Símbolo</label>
                 <select class="form-select form-select-sm" required aria-label="symbol"
                         id="symbol" th:field="*{symbol}">
@@ -51,7 +51,7 @@
             </div>
 
             <!-- input Cantidad -->
-            <div class="col-sm-1">
+            <div class="col-sm-1 w-auto">
                 <label for="assetsQuantity" class="form-label">Cantidad</label>
                 <input type="text" class="form-control form-control-sm" name="assetsQuantity"
                        id="assetsQuantity" aria-describedby="assetsQuantity" style="font-size: 14px;"
@@ -63,7 +63,7 @@
             </div>
 
             <!-- input Intervalo -->
-            <div class="col-sm-1">
+            <div class="col-sm-1 w-auto">
                 <label for="timeFrame" class="form-label">Intervalo</label>
                 <select class="form-select form-select-sm" aria-label="Seleccione un frame"
                         id="timeFrame" name="timeFrame" th:field="*{timeFrame}">
@@ -79,7 +79,7 @@
             </div>
 
             <!-- input Posición -->
-            <div class="col-sm-1">
+            <div class="col-sm-1 w-auto">
                 <label for="namePosition" class="form-label">Posición</label>
                 <select class="form-select form-select-sm" aria-label="Seleccione una posición"
                         id="namePosition" name="namePosition" th:field="*{position}">
@@ -96,7 +96,7 @@
             </div>
 
             <!-- input Fecha/Compra -->
-            <div class="col-sm-1">
+            <div class="col-sm-1 w-auto">
                 <label for="entryDate" class="form-label">Fecha/Compra</label>
                 <input type="date" class="form-control form-control-sm"
                        name="entryDate" id="entryDate" aria-describedby="entryDate" style="font-size: 14px;"
@@ -108,7 +108,7 @@
             </div>
 
             <!-- input Precio/Compra -->
-            <div class="col-sm-1">
+            <div class="col-sm-1 w-auto">
                 <label for="entryPrice" class="form-label">Precio/Compra</label>
                 <input type="text" class="form-control form-control-sm" name="entryPrice"
                        id="entryPrice" aria-describedby="entryPrice" style="font-size: 14px;"
@@ -120,7 +120,7 @@
             </div>
 
             <!-- input Estrategia-->
-            <div class="col-sm-2">
+            <div class="col-sm-2 w-auto">
                 <label for="strategy" class="form-label">Estrategia</label>
                 <select class="form-select form-select-sm" aria-label="strategy"
                         id="strategy" th:field="*{strategy}">
@@ -136,7 +136,7 @@
             </div>
 
             <!-- input Stop Loss -->
-            <div class="col-sm-2">
+            <div class="col-sm-2 w-auto">
                 <label for="stopLoss" class="form-label">Stop Loss</label>
                 <input type="text" class="form-control form-control-sm" name="stopLoss"
                        id="stopLoss" aria-describedby="stopLoss" style="font-size: 14px;"
@@ -148,7 +148,7 @@
             </div>
 
             <!-- input riskReward -->
-            <div class="col-sm-1">
+            <div class="col-sm-1" style="width: 80px">
                 <label for="riskReward" class="form-label">R/R</label>
                 <input type="text" class="form-control form-control-sm" name="riskReward"
                        id="riskReward" aria-describedby="riskReward" style="font-size: 14px;"
@@ -160,7 +160,7 @@
 
             </div>
             <!-- input Estado -->
-            <div class="col-sm-2">
+            <div class="col-sm-2 w-auto">
                 <select class="form-select form-select-sm" aria-label="status" id="status"
                         name="status" th:field="*{status}" style="display: none">
                     <option selected value="1">None</option>
