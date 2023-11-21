@@ -17,7 +17,7 @@
                 <div class="card-body">
 
                     <div th:class="text-success">
-                        <h4>Piario de trading - ditrading</h4>
+                        <h4>Diario de trading - ditrading</h4>
                     </div>
                     <hr th:class="text-secondary">
                     <div th:class="text-light">
@@ -36,23 +36,22 @@
                     <table class="table table-dark table-striped">
                         <thead>
                         <tr>
-                            <!-- sin th encabezado de tabla -->
+                            <!-- No necesita títulos te tabla o encabezados th -->
                         </tr>
                         </thead>
                         <tbody>
 
                         <tr>
-                            <td >Balance Ganancias/Perdidas</td>
+                            <td>Balance Ganancias/Perdidas</td>
                             <td>
                                 <span th:if="${statisticsDTO.getPnlBalanceCurrentMth() < 0}"
                                       class="badge rounded-pill text-bg-danger" style="font-size: 14px"
                                       th:text="${#numbers.formatCurrency(statisticsDTO.getPnlBalanceCurrentMth())}"></span>
 
-                            <span th:unless="${statisticsDTO.getPnlBalanceCurrentMth() < 0}"
-                                  class="badge rounded-pill text-bg-success" style="font-size: 15px"
-                                  th:text="${#numbers.formatCurrency(statisticsDTO.getPnlBalanceCurrentMth())}"></span>
+                                <span th:unless="${statisticsDTO.getPnlBalanceCurrentMth() < 0}"
+                                      class="badge rounded-pill text-bg-success" style="font-size: 15px"
+                                      th:text="${#numbers.formatCurrency(statisticsDTO.getPnlBalanceCurrentMth())}"></span>
                             </td>
-
                         </tr>
 
                         <tr>
@@ -77,23 +76,28 @@
 
                         <tr>
                             <td>Trades en ganancia</td>
-                            <td><span th:text="${statisticsDTO.getTradesProfitCurrentMth()}"
-                                      class="badge rounded-pill text-bg-success" style="font-size: 14px"></span>
+                            <td>
+                                <span th:text="${statisticsDTO.getTradesProfitCurrentMth()}"
+                                      class="badge rounded-pill text-bg-success" style="font-size: 14px">
+                                </span>
                             </td>
                         </tr>
 
                         <tr>
                             <td>Trades en perdida</td>
                             <td><span th:text="${statisticsDTO.getTradesLossCurrentMth()}"
-                                      class="badge rounded-pill text-bg-danger" style="font-size: 14px"></span>
+                                      class="badge rounded-pill text-bg-danger" style="font-size: 14px">
+                                </span>
                             </td>
 
                         <tr>
                             <td>Total trades</td>
-                            <td><span th:text="${statisticsDTO.getAllTradesCurrentMonth()}"
-                                      class="badge rounded-pill text-bg-primary" style="font-size: 16px"></span></td>
+                            <td>
+                                <span th:text="${statisticsDTO.getAllTradesCurrentMonth()}"
+                                      class="badge rounded-pill text-bg-primary" style="font-size: 16px">
+                                </span>
+                            </td>
                         </tr>
-
                         </tbody>
                     </table>
                 </div>
@@ -101,7 +105,6 @@
         </div>  <!--fin card body-->
     </div> <!--fin card-->
 </div> <!--fin container-->
-
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <footer th:insert="~{fragments/footer::footer}"></footer>
 </body>

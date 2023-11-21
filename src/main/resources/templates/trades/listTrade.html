@@ -72,8 +72,8 @@
 
                 <!-- Inicio td stopLoss -->
                 <td th:text="${trade.stopLength} > 2  ? ${#numbers.formatDecimal(trade.stopLoss,1,'COMMA',6,'POINT') + ' ' + '$'}
-                  : ${#numbers.formatDecimal(trade.stopLoss,1,'COMMA',2,'POINT') + ' ' + '$'}  "></td>
-                <!-- fin td stopLoss -->
+                  : ${#numbers.formatDecimal(trade.stopLoss,1,'COMMA',2,'POINT') + ' ' + '$'}  ">
+                </td>  <!-- fin td stopLoss -->
 
                 <td th:text="${trade.riskReward}"></td>
 
@@ -89,8 +89,7 @@
                 <td th:unless="${trade.takeProfit != null and trade.takeProfit > 0}" th:class="text-danger"
                     th:text="${trade.profitLength < 2 and trade.takeProfit == null} ? '---'
                     : ${#numbers.formatDecimal(trade.takeProfit,1,'COMMA',6,'POINT') + ' ' + '$'} ">
-                </td>
-                <!-- Fin td takeProfit -->
+                </td> <!-- Fin td takeProfit -->
 
                 <!--Inicio td returnInvestment -->
                 <td th:if="${trade.returnInvestment != null and trade.returnInvestment >=0}" th:class="text-success"
@@ -114,32 +113,45 @@
                     th:text="${trade.pnlLength > 2} ? ${#numbers.formatDecimal(trade.pnlBalance,1,'COMMA',6,'POINT') + ' ' + '$'}
                      : ${#numbers.formatDecimal(trade.pnlBalance,1,'COMMA',2,'POINT') + ' ' + '$'}">
                 </td>
+
+                <!-- Fin  td pnlBalance -->
                 <td th:unless="${trade.pnlBalance != null and trade.pnlBalance >=0}" th:class="text-danger"
                     th:text="${trade.pnlLength < 2 and trade.pnlBalance == null} ? ${#numbers.formatDecimal(trade.pnlBalance,1,'COMMA',6,'POINT') + ' ' + '$'} : ${#numbers.formatDecimal(trade.pnlBalance,1,'COMMA',2,'POINT') + ' ' + '$'} ">
-                </td>
-                <!-- Fin  td pnlBalance -->
+                </td> <!-- Fin  td pnlBalance -->
 
                 <!-- inicio td isOpen -->
                 <td>
-                    <span th:if="${trade.isOpen}" class="badge bg-success" th:text="Abierto"
+                    <span th:if="${trade.isOpen}" class="badge rounded-pill bg-success" th:text="Abierto"
                           style="font-size: 12px"></span>
-                    <span th:unless="${trade.isOpen}" class="badge bg-secondary" th:text="Cerrado"
+                    <span th:unless="${trade.isOpen}" class="badge rounded-pill bg-secondary" th:text="Cerrado"
                           style="font-size: 12px"></span>
-                </td>
-                <!-- Fin td isOpen -->
+                </td> <!-- Fin td isOpen -->
 
                 <!-- Inicio botones de acción -->
-                <td class="text-center align-middle">
+                <td th:if="${trade.isOpen}" class="text-center align-middle">
                     <a class="btn btn-outline-primary btn-sm" role="button" title="Editar trade"
                        th:href="@{/trades/edit/{id} (id = ${trade.idTrade})}">
-                        <i class="fas fa-pencil-alt"></i></a>
+                        <i class="fas fa-pencil-alt"></i>
+                    </a>
                     &nbsp
                     <a class="btn btn-outline-danger btn-sm" role="button" title="Eliminar trade"
                        th:href="@{/trades/delete/{id} (id = ${trade.idTrade})}"
                        onclick="return confirm('¿Desea eliminar el trade?')">
-                        <i class="far fa-trash-alt"></i></a>
+                        <i class="far fa-trash-alt"></i>
+                    </a>
+                </td>
+                <td th:unless="${trade.isOpen}" class="text-center align-middle">
+                    <a class="btn btn-outline-secondary btn-sm disabled" role="button" title="Editar trade"
+                       th:href="@{/trades/edit/{id} (id = ${trade.idTrade})}">
+                        <i class="fas fa-pencil-alt"></i>
+                    </a>
+                    &nbsp
+                    <a class="btn btn-outline-secondary disabled btn-sm" role="button" title="Eliminar trade"
+                       th:href="@{/trades/delete/{id} (id = ${trade.idTrade})}"
+                       onclick="return confirm('¿Desea eliminar el trade?')">
+                        <i class="far fa-trash-alt"></i>
+                    </a>
                 </td> <!-- Fin botones de acción -->
-
             </tr>
             </tbody>
         </table>
@@ -170,9 +182,7 @@
         </nav>
         <div th:class="col-md-2"></div>
     </div>
-</div>
-<!-- Fin paginación -->
-
+</div> <!-- Fin paginación -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <footer th:insert="~{fragments/footer::footer}"></footer>
 </body>

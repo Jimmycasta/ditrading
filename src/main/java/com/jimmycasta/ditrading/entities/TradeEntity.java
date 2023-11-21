@@ -102,16 +102,8 @@ public class TradeEntity implements Serializable {
     private PositionEntity position;
 
     @ManyToOne
-    @JoinColumn(name = "id_status")
-    private StatusEntity status;
-
-    @ManyToOne
     @JoinColumn(name = "id_trader")
     private TraderEntity trader;
-
-    @ManyToOne
-    @JoinColumn(name = "id_pnl_result")
-    private PnLResultEntity pnlResult;
 
     @NotNull(message = "Ingrese estrategia")
     @ManyToOne

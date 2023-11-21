@@ -71,7 +71,6 @@ public class TradeController {
 
     @GetMapping("/new")
     public String newTrade(@ModelAttribute("trade") TradeEntity trade, Model model) {
-
         trade.setEntryDate(LocalDate.now());
 
         List<SymbolEntity> listSymbols = symbolService.getAll();
@@ -162,10 +161,7 @@ public class TradeController {
     public String delete(@PathVariable("id") int id) {
         tradeService.delete(id);
         return "redirect:/trades/list";
-
     }
-
-
 }
 
 
