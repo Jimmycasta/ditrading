@@ -119,7 +119,16 @@
                 </td>
                 <!-- Fin  td pnlBalance -->
 
-                <td th:text="${trade.status.nameStatus}" style="font-size: 12px"></td>
+                <!-- inicio td isOpen -->
+                <td>
+                    <span th:if="${trade.isOpen}" class="badge bg-success" th:text="Abierto"
+                          style="font-size: 12px"></span>
+                    <span th:unless="${trade.isOpen}" class="badge bg-secondary" th:text="Cerrado"
+                          style="font-size: 12px"></span>
+                </td>
+                <!-- Fin td isOpen -->
+
+                <!-- Inicio botones de acción -->
                 <td class="text-center align-middle">
                     <a class="btn btn-outline-primary btn-sm" role="button" title="Editar trade"
                        th:href="@{/trades/edit/{id} (id = ${trade.idTrade})}">
@@ -129,7 +138,8 @@
                        th:href="@{/trades/delete/{id} (id = ${trade.idTrade})}"
                        onclick="return confirm('¿Desea eliminar el trade?')">
                         <i class="far fa-trash-alt"></i></a>
-                </td>
+                </td> <!-- Fin botones de acción -->
+
             </tr>
             </tbody>
         </table>

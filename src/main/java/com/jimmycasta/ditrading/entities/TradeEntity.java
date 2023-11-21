@@ -78,6 +78,9 @@ public class TradeEntity implements Serializable {
     @Column(length = 200)
     private String notes;
 
+    @Column(name = "is_open")
+    private Boolean isOpen = true;
+
     @Column(name = "date_time")
     private LocalDateTime dateTime;
 

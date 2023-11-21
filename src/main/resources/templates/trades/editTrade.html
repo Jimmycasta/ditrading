@@ -155,13 +155,12 @@
             <div class="col-sm-2 w-auto">
                 <label for="status" class="form-label">Estado</label>
                 <select class="form-select form-select-sm" aria-label="status" id="status"
-                        name="status" th:field="*{status}" >
-                    <option th:each="status : ${listStatus}"
-                            th:value="${status.idStatus}"
-                            th:text="${status.nameStatus}"></option>
+                        name="status" th:field="*{isOpen}" >
+                    <option th:value="1" th:text="Abierto"></option>
+                    <option th:value="0" th:text="Cerrado"></option>
                 </select>
             </div>
-            <!--Fin input status -->
+            <!--Fin status -->
 
             <div class="mb-2 ">
                 <button class="btn btn-primary btn-sm" type="submit" style="font-size: 14px;">Guardar</button>
