@@ -151,31 +151,40 @@
                 <input type="date" class="form-control form-control-sm"
                        name="exitDate" id="exitDate" aria-describedby="exitDate" style="font-size: 14px;"
                        th:value="*{exitDate}">
-                <!-- <small th:if="${#fields.hasErrors('detailSymbol')}" th:errors="*{detailSymbol}"
-                        th:class="'form-text text-danger'"></small> -->
             </div>
+
+
+
 
             <!-- input status -->
 
-            <div class="col-sm-2">
-                <div class="card bg-secondary border-secondary text-light ">
-                    <div th:class="card-body">
-                        <label class="form-check-label" for="flexRadioDefault1">
-                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                            Abierto
-                        </label>
 
-                        <label class="form-check-label" for="flexRadioDefault1">
-                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                            Abierto
-                        </label>
 
-                    </div>
+            <div class="col-sm-2 card bg-dark text-light border-secondary">
+                <br>
+                <label for="flexRadioDefault1" class="form-label">Abierto
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                </label>
+
+                <div>
+                    <br>
+                    <label for="flexRadioDefault2" class="form-label">Abierto
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
+                    </label>
                 </div>
 
-
             </div>
+
+
+
+
+
+
+
             <!--Fin input status -->
+
+
+
 
             <div class="mb-2 ">
                 <button class="btn btn-primary btn-sm" type="submit" style="font-size: 14px;">Guardar</button>
