@@ -14,7 +14,6 @@
 <body class="bg-dark">
 <header th:insert="~{fragments/navbar.html::navbar}"></header>
 <br>
-<!-- <div class="container"> -->
 <div class="card bg-dark border-secondary">
     <div class="card-body">
         <div class="text-light">
@@ -44,7 +43,6 @@
                             th:value="${symbol.idSymbol}"
                             th:text="${symbol.nameSymbol}"></option>
                 </select>
-                <input type="hidden" th:field="*{symbol}">
             </div>
 
             <!-- input Cantidad -->
@@ -53,7 +51,6 @@
                 <input type="text" class="form-control form-control-sm bg-secondary" disabled name="assetsQuantity"
                        id="assetsQuantity" aria-describedby="assetsQuantity" style="font-size: 14px;"
                        placeholder="0" th:field="*{assetsQuantity}">
-                <input type="hidden" th:field="*{assetsQuantity}">
             </div>
 
             <!-- input Intervalo -->
@@ -66,7 +63,6 @@
                             th:value="${frame.idFrame}"
                             th:text="${frame.nameFrame}"></option>
                 </select>
-                <input type="hidden" th:field="*{timeFrame}">
             </div>
 
             <!-- input Posición -->
@@ -80,7 +76,6 @@
                             th:text="${position.namePosition}">
                     </option>
                 </select>
-                <input type="hidden" th:field="*{position}">
             </div>
 
             <!-- input entryDate-->
@@ -98,7 +93,6 @@
                        id="entryPrice" aria-describedby="entryPrice" style="font-size: 14px;"
                        placeholder="0.0" th:field="*{entryPrice}">
             </div>
-            <input type="hidden" th:field="*{entryPrice}">
 
             <!-- input Strategy -->
             <div class="col-sm-2 w-auto">
@@ -119,8 +113,6 @@
                 <input type="text" class="form-control form-control-sm bg-secondary" name="riskReward" readonly
                        id="riskReward" aria-describedby="riskReward" style="font-size: 14px;"
                        placeholder="0.0" th:field="*{riskReward}">
-                <!-- <small th:if="${#fields.hasErrors('detailSymbol')}" th:errors="*{detailSymbol}"
-                        th:class="'form-text text-danger'"></small> -->
             </div>
 
             <!-- input stopLoss -->
@@ -155,22 +147,24 @@
             <div class="col-sm-2 w-auto">
                 <label for="status" class="form-label">Estado</label>
                 <select class="form-select form-select-sm" aria-label="status" id="status"
-                        name="status" th:field="*{status}" >
-                    <option th:each="status : ${listStatus}"
-                            th:value="${status.idStatus}"
-                            th:text="${status.nameStatus}"></option>
+                        name="status" th:field="*{isOpen}">
+                    <option th:value="1" th:text="Abierto"></option>
+                    <option th:value="0" th:text="Cerrado"></option>
                 </select>
-            </div>
-            <!--Fin input status -->
+            </div> <!--Fin input status -->
 
             <div class="mb-2 ">
                 <button class="btn btn-primary btn-sm" type="submit" style="font-size: 14px;">Guardar</button>
             </div>
+            <input type="hidden" th:field="*{symbol}">
+            <input type="hidden" th:field="*{assetsQuantity}">
+            <input type="hidden" th:field="*{timeFrame}">
+            <input type="hidden" th:field="*{position}">
+            <input type="hidden" th:field="*{entryPrice}">
             <input type="hidden" th:field="*{idTrade}" id="idTrade" name="idTrade">
         </form>
     </div> <!-- Fin card-body del from -->
 </div> <!-- Fin card del from -->
-<!-- </div>  Fin container -->
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <footer th:insert="~{fragments/footer::footer}"></footer>
