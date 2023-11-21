@@ -29,22 +29,20 @@ public class TradeController {
     private final TimeFrameService timeFrameService;
     private final PositionService positionService;
     private final StrategyService strategyService;
-    private final StatusService statusService;
+
 
     @Autowired
     public TradeController(TradeService tradeService,
                            SymbolService symbolService,
                            TimeFrameService timeFrameService,
                            PositionService positionService,
-                           StrategyService strategyService,
-                           StatusService statusService) {
+                           StrategyService strategyService) {
 
         this.tradeService = tradeService;
         this.symbolService = symbolService;
         this.timeFrameService = timeFrameService;
         this.positionService = positionService;
         this.strategyService = strategyService;
-        this.statusService = statusService;
     }
 
     @GetMapping("/list")
@@ -77,13 +75,11 @@ public class TradeController {
         List<TimeFrameEntity> listFrames = timeFrameService.getAll();
         List<PositionEntity> listPositions = positionService.getAll();
         List<StrategyEntity> listStrategies = strategyService.getAll();
-        List<StatusEntity> listStatus = statusService.getAll();
 
         model.addAttribute("listSymbols", listSymbols);
         model.addAttribute("listFrames", listFrames);
         model.addAttribute("listPositions", listPositions);
         model.addAttribute("listStrategies", listStrategies);
-        model.addAttribute("listStatus", listStatus);
         model.addAttribute("title", "Nuevo trade");
         model.addAttribute("titleAction", "Nuevo trade");
         return "trades/newTrade";
@@ -99,13 +95,12 @@ public class TradeController {
             List<TimeFrameEntity> listFrames = timeFrameService.getAll();
             List<PositionEntity> listPositions = positionService.getAll();
             List<StrategyEntity> listStrategies = strategyService.getAll();
-            List<StatusEntity> listStatus = statusService.getAll();
 
             model.addAttribute("listSymbols", listSymbols);
             model.addAttribute("listFrames", listFrames);
             model.addAttribute("listPositions", listPositions);
             model.addAttribute("listStrategies", listStrategies);
-            model.addAttribute("listStatus", listStatus);
+
             model.addAttribute("title", "Nuevo trade");
             model.addAttribute("titleAction", "Nuevo trade");
             return "trades/newTrade";
@@ -143,13 +138,11 @@ public class TradeController {
         List<TimeFrameEntity> listFrames = timeFrameService.getAll();
         List<PositionEntity> listPositions = positionService.getAll();
         List<StrategyEntity> listStrategies = strategyService.getAll();
-        List<StatusEntity> listStatus = statusService.getAll();
 
         model.addAttribute("listSymbols", listSymbols);
         model.addAttribute("listFrames", listFrames);
         model.addAttribute("listPositions", listPositions);
         model.addAttribute("listStrategies", listStrategies);
-        model.addAttribute("listStatus", listStatus);
 
         model.addAttribute("trade", trade);
         model.addAttribute("title", "Editar/Cerrar - trade");
