@@ -159,16 +159,7 @@
                 </small>
 
             </div>
-            <!-- input Estado -->
-            <div class="col-sm-2 w-auto">
-                <select class="form-select form-select-sm" aria-label="status" id="status"
-                        name="status" th:field="*{status}" style="display: none">
-                    <option selected value="1">None</option>
-                    <option th:each="status : ${listStatus}"
-                            th:value="${status.idStatus}"
-                            th:text="${status.nameStatus}"></option>
-                </select>
-            </div>
+
             <input type="hidden" th:field="*{idTrade}" id="idTrade" name="idTrade">
             <div class="mb-2 ">
                 <button class="btn btn-primary btn-sm" type="submit" style="font-size: 14px;">Guardar</button>
