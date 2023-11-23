@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.time.temporal.TemporalAdjusters;
+import java.util.List;
 
 @Controller
 public class operationMath {
@@ -47,11 +48,20 @@ public class operationMath {
         statisticsDTO.setTopInstrumentCurrentMth(tradeService.getTopInstrumentCurrentMth());
         statisticsDTO.setTopStrategiesCurrentMth(tradeService.getTopStrategiesCurrentMth());
 
-        voy aqui... hay que traer la lista de openAndClose y pasarla a estatistics
-
+        List<Boolean> openAndCloseList = tradeService.getOpenAndCloseCurrentMth(startDate, endDate);
+        int openQuantity = 0;
+        int closeQuantity = 0;
+        for (boolean isOpen : openAndCloseList){
+            if (isOpen){
+                openQuantity++;
+            }else {
+                closeQuantity++;
+            }
+        }
+        statisticsDTO.setOpenTradesCurrentMth(openQuantity);
+        statisticsDTO.setCloseTradesCurrentMth(closeQuantity);
         return statisticsDTO;
     }
-
 
     //Devuelve la cantidad de decimales que tiene un número doble.
     public static int getDecimalQuantity(double number) {

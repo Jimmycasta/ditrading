@@ -75,7 +75,7 @@
                         </tr>
 
                         <tr>
-                            <td>Trades en ganancia</td>
+                            <td>En ganancia</td>
                             <td>
                                 <span th:text="${statisticsDTO.getTradesProfitCurrentMth()}"
                                       class="badge rounded-pill text-bg-success" style="font-size: 14px">
@@ -84,11 +84,29 @@
                         </tr>
 
                         <tr>
-                            <td>Trades en perdida</td>
+                            <td>En perdida</td>
                             <td><span th:text="${statisticsDTO.getTradesLossCurrentMth()}"
                                       class="badge rounded-pill text-bg-danger" style="font-size: 14px">
                                 </span>
                             </td>
+
+                        <tr>
+                            <td>Abiertos</td>
+                            <td>
+                                <span th:text="${statisticsDTO.getOpenTradesCurrentMth()}"
+                                      class="badge rounded-pill text-bg-primary" style="font-size: 16px">
+                                </span>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>Cerrados</td>
+                            <td>
+                                <span th:text="${statisticsDTO.getCloseTradesCurrentMth()}"
+                                      class="badge rounded-pill text-bg-primary" style="font-size: 16px">
+                                </span>
+                            </td>
+                        </tr>
 
                         <tr>
                             <td>Total trades</td>
@@ -98,6 +116,7 @@
                                 </span>
                             </td>
                         </tr>
+
                         </tbody>
                     </table>
                 </div>

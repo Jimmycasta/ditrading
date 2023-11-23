@@ -90,7 +90,7 @@ public class TradeServiceImpl implements TradeService {
     }
 
     @Override
-    public List<Integer> getOpenAndCloseCurrentMth(LocalDate startDate, LocalDate endDate) {
+    public List<Boolean> getOpenAndCloseCurrentMth(LocalDate startDate, LocalDate endDate) {
         return tradeRepository.getOpenAndCloseCurrentMth(startDate, endDate);
     }
 }

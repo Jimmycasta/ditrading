@@ -32,7 +32,7 @@ public interface TradeService {
 
     double getLastBalance(LocalDate startDate, LocalDate endDate);
 
-    List<Integer> getOpenAndCloseCurrentMth(LocalDate startDate, LocalDate endDate);
+    List<Boolean> getOpenAndCloseCurrentMth(LocalDate startDate, LocalDate endDate);
 
 
 }

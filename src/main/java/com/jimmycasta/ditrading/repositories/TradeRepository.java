@@ -48,8 +48,8 @@ public interface TradeRepository extends JpaRepository<TradeEntity, Integer> {
 
     //Retorna lista con todos los trades abiertos y cerrados para las estadísticas de home.html
     @Query(value = "SELECT is_open FROM ditradingdb.trades" +
-            " WHERE entry_date AND exit_date BETWEEN  :startDate AND :endDate", nativeQuery = true)
-    List<Integer> getOpenAndCloseCurrentMth(@Param("startDate") LocalDate startDate, @Param("endDate") LocalDate endDate);
+            " WHERE entry_date BETWEEN :startDate AND :endDate", nativeQuery = true)
+    List<Boolean> getOpenAndCloseCurrentMth(@Param("startDate") LocalDate startDate, @Param("endDate") LocalDate endDate);
 
 
 }
