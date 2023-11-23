@@ -15,9 +15,15 @@ public class StatisticsDTO {
 
     private int allTradesCurrentMonth;
 
+    private int openTradesCurrentMth;
+
+    private int closeTradesCurrentMth;
+
     private List<String> topStrategiesCurrentMth;
 
     private List<String> topInstrumentCurrentMth;
+
+
 
 
 

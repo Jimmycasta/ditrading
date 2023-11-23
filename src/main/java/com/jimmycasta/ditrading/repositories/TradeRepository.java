@@ -1,7 +1,6 @@
 package com.jimmycasta.ditrading.repositories;
 
 import com.jimmycasta.ditrading.entities.TradeEntity;
-import jakarta.ejb.Local;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -23,7 +22,7 @@ public interface TradeRepository extends JpaRepository<TradeEntity, Integer> {
     int getTradesLossCurrentMth(@Param("startDate") LocalDate startDate, @Param("endDate") LocalDate endDate);
 
     //Cuenta todos los trades del mes actual
-    @Query(value = "SELECT COUNT(id_symbol) FROM trades WHERE entry_date AND exit_date BETWEEN  :startDate AND :endDate", nativeQuery = true)
+    @Query(value = "SELECT COUNT(id_symbol) FROM trades WHERE entry_date BETWEEN  :startDate AND :endDate", nativeQuery = true)
     int getAllTradesCurrentMth(@Param("startDate") LocalDate startDate, @Param("endDate") LocalDate endDate);
 
     // Consulta el Top de los instrumentos o symbols más usados.
@@ -44,8 +43,13 @@ public interface TradeRepository extends JpaRepository<TradeEntity, Integer> {
     //Retorna el último balance (last_balance) es la suma de todos los trades cerrados
     @Query(value = "SELECT last_balance FROM ditradingdb.trades WHERE date_time = (SELECT MAX(date_time) from ditradingdb.trades" +
             " WHERE entry_date AND exit_date BETWEEN :startDate AND :endDate);", nativeQuery = true)
-    Optional<Double> getLastBalance(@Param("startDate") LocalDate startDate, @Param("endDate")LocalDate endDate);
+    Optional<Double> getLastBalance(@Param("startDate") LocalDate startDate, @Param("endDate") LocalDate endDate);
 
+
+    //Retorna lista con todos los trades abiertos y cerrados para las estadísticas de home.html
+    @Query(value = "SELECT is_open FROM ditradingdb.trades" +
+            " WHERE entry_date AND exit_date BETWEEN  :startDate AND :endDate", nativeQuery = true)
+    List<Integer> getOpenAndCloseCurrentMth(@Param("startDate") LocalDate startDate, @Param("endDate") LocalDate endDate);
 
 
 }

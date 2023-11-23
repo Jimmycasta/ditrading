@@ -46,6 +46,9 @@ public class operationMath {
         statisticsDTO.setAllTradesCurrentMonth(tradeService.getAllTradesCurrentMth(startDate, endDate));
         statisticsDTO.setTopInstrumentCurrentMth(tradeService.getTopInstrumentCurrentMth());
         statisticsDTO.setTopStrategiesCurrentMth(tradeService.getTopStrategiesCurrentMth());
+
+        voy aqui... hay que traer la lista de openAndClose y pasarla a estatistics
+
         return statisticsDTO;
     }
 
