@@ -1,6 +1,8 @@
 package com.jimmycasta.ditrading.repositories;
 
 import com.jimmycasta.ditrading.entities.TradeEntity;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -26,14 +28,14 @@ public interface TradeRepository extends JpaRepository<TradeEntity, Integer> {
     int getAllTradesCurrentMth(@Param("startDate") LocalDate startDate, @Param("endDate") LocalDate endDate);
 
     // Consulta el Top de los instrumentos o symbols más usados.
-    @Query(value = "SELECT name_symbol FROM ditradingdb.symbols INNER JOIN ditradingdb.trades" +
+    @Query(value = "SELECT name_symbol FROM symbols INNER JOIN trades" +
             " ON symbols.id_symbol = trades.id_symbol\n" +
             "WHERE symbols.id_symbol = trades.id_symbol GROUP BY symbols.id_symbol" +
             " ORDER BY sum(trades.id_symbol) desc limit 3", nativeQuery = true)
     List<String> getTopInstrumentCurrentMth();
 
     // Consulta el Top de las estrategias más usados.
-    @Query(value = "SELECT name_strategy FROM ditradingdb.strategy INNER JOIN ditradingdb.trades" +
+    @Query(value = "SELECT name_strategy FROM strategy INNER JOIN trades" +
             " ON strategy.id_strategy = trades.id_strategy\n" +
             "WHERE strategy.id_strategy = trades.id_strategy GROUP BY strategy.id_strategy" +
             " ORDER BY sum(trades.id_strategy) desc limit 3;", nativeQuery = true)
@@ -41,15 +43,15 @@ public interface TradeRepository extends JpaRepository<TradeEntity, Integer> {
 
 
     //Retorna el último balance (last_balance) es la suma de todos los trades cerrados
-    @Query(value = "SELECT last_balance FROM ditradingdb.trades WHERE date_time = (SELECT MAX(date_time) from ditradingdb.trades" +
+    @Query(value = "SELECT last_balance FROM trades WHERE date_time = (SELECT MAX(date_time) from trades" +
             " WHERE entry_date AND exit_date BETWEEN :startDate AND :endDate);", nativeQuery = true)
     Optional<Double> getLastBalance(@Param("startDate") LocalDate startDate, @Param("endDate") LocalDate endDate);
 
 
     //Retorna lista con todos los trades abiertos y cerrados para las estadísticas de home.html
-    @Query(value = "SELECT is_open FROM ditradingdb.trades" +
+    @Query(value = "SELECT is_open FROM trades" +
             " WHERE entry_date BETWEEN :startDate AND :endDate", nativeQuery = true)
     List<Boolean> getOpenAndCloseCurrentMth(@Param("startDate") LocalDate startDate, @Param("endDate") LocalDate endDate);
 
-
+    Page<TradeEntity> findAllByOrderByIdTradeDesc(Pageable pageable);
 }

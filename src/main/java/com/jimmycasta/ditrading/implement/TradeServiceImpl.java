@@ -6,6 +6,7 @@ import com.jimmycasta.ditrading.services.TradeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -30,7 +31,7 @@ public class TradeServiceImpl implements TradeService {
 
     @Override
     public Page<TradeEntity> getAllPage(Pageable pageable) {
-        return tradeRepository.findAll(pageable);
+        return tradeRepository.findAllByOrderByIdTradeDesc(pageable);
     }
 
     @Override
