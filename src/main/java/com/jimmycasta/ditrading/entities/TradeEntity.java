@@ -59,7 +59,7 @@ public class TradeEntity implements Serializable {
     @Column(name = "pnl_percentage", length = 15)
     private Double pnlPercentage;
 
-    @NotEmpty(message = "Ingrese R/R")
+    //@NotEmpty(message = "Ingrese R/R")
     @Column(name = "risk_reward", length = 15)
     private String riskReward;
 
@@ -109,5 +109,8 @@ public class TradeEntity implements Serializable {
     @ManyToOne
     @JoinColumn(name = "id_strategy")
     private StrategyEntity strategy;
+
+    @NotNull(message = "Ingrese Take/profit estimado")
+    private Double takeProfitEstimated;
 
 }
