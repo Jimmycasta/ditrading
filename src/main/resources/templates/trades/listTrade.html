@@ -75,7 +75,9 @@
                   : ${#numbers.formatDecimal(trade.stopLoss,1,'COMMA',2,'POINT') + ' ' + '$'}  "></td>
                 <!-- fin td stopLoss -->
 
-                <td th:text="${trade.riskReward}"></td>
+                <!-- Inicio td riskReward -->
+                <td th:if="${trade.riskReward == null}" th:class="text-danger" th:text="'---'"></td>
+                <td th:unless="${trade.riskReward == null}" th:text="${trade.riskReward}"></td>
 
                 <!-- Inicio td exitDate -->
                 <td th:if="${trade.exitDate == null}" th:class="text-danger" th:text="'---'"></td>
@@ -83,7 +85,8 @@
 
                 <!-- Inicio td takeProfit -->
                 <td th:if="${trade.takeProfit != null and trade.takeProfit > 0 }" th:class="text-light"
-                    th:text="${trade.profitLength > 2} ? ${#numbers.formatDecimal(trade.takeProfit,1,'COMMA',6,'POINT') + ' ' + '$'}
+                    th:text="${trade.profitLength > 2}
+                     ? ${#numbers.formatDecimal(trade.takeProfit,1,'COMMA',6,'POINT') + ' ' + '$'}
                      : ${#numbers.formatDecimal(trade.takeProfit,1,'COMMA',2,'POINT') + ' ' + '$'}">
                 </td>
                 <td th:unless="${trade.takeProfit != null and trade.takeProfit > 0}" th:class="text-danger"

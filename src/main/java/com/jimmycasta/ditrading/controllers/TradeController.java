@@ -109,7 +109,6 @@ public class TradeController {
             attributes.addFlashAttribute("message", "Trade guardado");
             trade.setEntryLength(operationMath.getDecimalQuantity(trade.getEntryPrice()));
             trade.setStopLength(operationMath.getDecimalQuantity(trade.getStopLoss()));
-            trade.setRiskReward(operationMath.getRiskReward(trade.getEntryPrice(), trade.getTakeProfitEstimated(), trade.getStopLoss()));
             tradeService.save(trade);
             return "redirect:/trades/list";
 

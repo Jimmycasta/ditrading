@@ -110,7 +110,4 @@ public class TradeEntity implements Serializable {
     @JoinColumn(name = "id_strategy")
     private StrategyEntity strategy;
 
-    @NotNull(message = "Ingrese Take/profit estimado")
-    private Double takeProfitEstimated;
-
 }
