@@ -51,10 +51,10 @@ public class operationMath {
         List<Boolean> openAndCloseList = tradeService.getOpenAndCloseCurrentMth(startDate, endDate);
         int openQuantity = 0;
         int closeQuantity = 0;
-        for (boolean isOpen : openAndCloseList){
-            if (isOpen){
+        for (boolean isOpen : openAndCloseList) {
+            if (isOpen) {
                 openQuantity++;
-            }else {
+            } else {
                 closeQuantity++;
             }
         }
@@ -75,5 +75,13 @@ public class operationMath {
         return (tradeService.getLastBalance(startDate, endDate)) + ((takeProfit - entryPrice) * assetsQuantity);
     }
 
+    //Calcula el Risk/Reward
+    public static String getRiskReward(double entryPrice, double takeProfit, double stopLoss) {
+        DecimalFormat df = new DecimalFormat("#.#");
+        double takeProfitPercent = ((takeProfit / entryPrice) * 100) - 100;
+        double stopLossPercent = ((stopLoss / entryPrice) * 100) - 100;
+        double riskReward = ((stopLossPercent / takeProfitPercent) * -1) + 1;
+        return df.format(riskReward).replace(".", ":");
+    }
 
 }
