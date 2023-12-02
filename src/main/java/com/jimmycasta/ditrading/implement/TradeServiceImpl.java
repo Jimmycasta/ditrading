@@ -6,7 +6,6 @@ import com.jimmycasta.ditrading.services.TradeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -52,10 +51,7 @@ public class TradeServiceImpl implements TradeService {
     @Override
     public TradeEntity getById(int id) {
         Optional<TradeEntity> optional = tradeRepository.findById(id);
-        if (optional.isPresent()) {
-            return optional.get();
-        }
-        return null;
+        return optional.orElse(null);
     }
 
     @Override

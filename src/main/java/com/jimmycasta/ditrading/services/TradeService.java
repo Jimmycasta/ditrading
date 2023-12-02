@@ -3,7 +3,6 @@ package com.jimmycasta.ditrading.services;
 import com.jimmycasta.ditrading.entities.TradeEntity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 
 import java.time.LocalDate;
 import java.util.List;
