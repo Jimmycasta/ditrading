@@ -117,7 +117,7 @@ public class TradeController {
             trade.setPnlBalance(operationMath.calculatePnl(trade.getTakeProfit(), trade.getEntryPrice(), trade.getAssetsQuantity()));
             trade.setPnlPercentage(operationMath.diffPercent(trade.getTakeProfit(), trade.getEntryPrice()));
             trade.setLastBalance(operationMath.getLastBalance(trade.getTakeProfit(), trade.getEntryPrice(), trade.getAssetsQuantity()));
-            trade.setRiskReward(operationMath.getRiskReward(trade.getEntryPrice(), trade.getTakeProfit(), trade.getStopLoss()));
+            trade.setRiskReward(operationMath.getRiskReward(trade.getEntryPrice(), trade.getTakeProfit(), trade.getStopLoss(),trade.getAssetsQuantity()));
             trade.setProfitLength(operationMath.getDecimalQuantity(trade.getTakeProfit()));
             trade.setEntryLength(operationMath.getDecimalQuantity(trade.getEntryPrice()));
             trade.setStopLength(operationMath.getDecimalQuantity(trade.getStopLoss()));

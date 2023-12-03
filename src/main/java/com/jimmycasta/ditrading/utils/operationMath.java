@@ -76,12 +76,11 @@ public class operationMath {
     }
 
     //Calcula el Risk/Reward
-    public static String getRiskReward(double entryPrice, double takeProfit, double stopLoss) {
-        DecimalFormat df = new DecimalFormat("#.#");
-        double takeProfitPercent = ((takeProfit / entryPrice) * 100) - 100;
-        double stopLossPercent = ((stopLoss / entryPrice) * 100) - 100;
-        double riskReward = ((stopLossPercent / takeProfitPercent) * -1) + 1;
-        return df.format(riskReward).replace(".", ":");
+    public static String getRiskReward(double entryPrice, double takeProfit, double stopLoss, double quantity) {
+        double reward = (takeProfit - entryPrice) * quantity;
+        double risk = (entryPrice - stopLoss) * quantity;
+        double riskReward = (reward / risk);
+        return "1:" + String.valueOf(Math.round(riskReward));
     }
 
 }
