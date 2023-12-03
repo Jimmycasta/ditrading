@@ -61,7 +61,7 @@
                 <td th:text="${trade.position.namePosition}"></td>
                 <td th:text="${trade.strategy.nameStrategy}"></td>
                 <td th:text="${trade.entryDate}"></td>
-                <td th:text="${#numbers.formatDecimal(trade.assetsQuantity,1,0)}"></td>
+                <td th:text="${#numbers.formatDecimal(trade.assetsQuantity,1,'COMMA',0,'POINT')}"></td>
 
                 <!-- Inicio td entryPrice -->
                 <td th:text="${trade.entryLength} > 2 ? ${#numbers.formatDecimal(trade.entryPrice,1,'COMMA',6,'POINT') + ' ' + '$'}
