@@ -45,8 +45,6 @@
                 </select>
             </div>
 
-
-
             <!-- input Intervalo -->
             <div class="col-sm-1 w-auto">
                 <label for="timeFrame" class="form-label">Intervalo</label>
@@ -85,16 +83,16 @@
                 <input type="hidden" th:field="*{strategy}">
             </div>
 
-            <!-- input entryDate-->
+            <!-- input entryDate
             <div class="col-sm-1 w-auto">
                 <label for="entryDate" class="form-label">Fecha/Compra</label>
                 <input type="date" class="form-control form-control-sm bg-secondary" readonly
                        name="entryDate" id="entryDate" aria-describedby="entryDate" style="font-size: 14px;"
                        th:value="${trade.entryDate}">
-            </div>
+            </div> -->
 
             <!-- input Cantidad -->
-            <div class="col-sm-1 w-auto">
+            <div class="col-sm w-auto">
                 <label for="assetsQuantity" class="form-label">Cantidad</label>
                 <input type="text" class="form-control form-control-sm bg-secondary" disabled name="assetsQuantity"
                        id="assetsQuantity" aria-describedby="assetsQuantity" style="font-size: 14px;"
@@ -102,7 +100,7 @@
             </div>
 
             <!-- input Precio/Compra -->
-            <div class="col-sm-1 w-auto">
+            <div class="col-sm w-auto">
                 <label for="entryPrice" class="form-label">Precio/Compra</label>
                 <input type="text" class="form-control form-control-sm bg-secondary" disabled name="entryPrice"
                        id="entryPrice" aria-describedby="entryPrice" style="font-size: 14px;"
@@ -110,11 +108,11 @@
             </div>
 
             <!-- input riskReward-->
-            <div class="col-sm-1" style="width: 150px">
+            <div class="col-sm-1" style="width: 70px">
                 <label for="riskReward" class="form-label">R/R</label>
                 <input type="text" class="form-control form-control-sm bg-secondary" name="riskReward" readonly
                        id="riskReward" aria-describedby="riskReward" style="font-size: 14px;"
-                       placeholder="0.0" th:field="*{riskReward}">
+                       placeholder="0:0" th:field="*{riskReward}">
             </div>
 
             <!-- input stopLoss -->
@@ -137,15 +135,15 @@
                         th:class="'form-text text-danger'"></small> -->
             </div>
 
-            <!-- input exitDate-->
+            <!-- input exitDate
             <div class="col-sm-1 w-auto">
                 <label for="exitDate" class="form-label">Fecha/Venta</label>
                 <input type="date" class="form-control form-control-sm"
                        name="exitDate" id="exitDate" aria-describedby="exitDate" style="font-size: 14px;"
                        th:value="*{exitDate}">
-            </div>
+            </div> -->
 
-            <!-- input status -->
+            <!-- input status
             <div class="col-sm-1 w-auto">
                 <label for="status" class="form-label">Estado</label>
                 <select class="form-select form-select-sm" aria-label="status" id="status"
@@ -153,7 +151,7 @@
                     <option th:value="1" th:text="Abierto"></option>
                     <option th:value="0" th:text="Cerrado"></option>
                 </select>
-            </div> <!--Fin input status -->
+            </div>  Fin input status -->
 
             <input type="hidden" th:field="*{symbol}">
             <input type="hidden" th:field="*{assetsQuantity}">
@@ -161,9 +159,13 @@
             <input type="hidden" th:field="*{position}">
             <input type="hidden" th:field="*{entryPrice}">
             <input type="hidden" th:field="*{idTrade}">
-
+            <input type="hidden" th:field="*{entryDate}">
+            <input type="hidden" value="0" name="isOpen">
             <div class="mb-2 ">
-                <button class="btn btn-primary btn-sm" type="submit" style="font-size: 14px;">Guardar</button>
+                <br>
+                <button class="btn btn-danger btn" type="submit" style="font-size: 16px;"
+                        onclick="return confirm('' +
+                         '¡Si cierra el trade, no lo podrá reabrir ni editar!\n ¿Desea cerrar el trade?')">Cerrar/Trade</button>
             </div>
         </form>
     </div> <!-- Fin card-body del from -->
@@ -171,7 +173,7 @@
 
 <!-- Deshabilita las fechas pasadas input type = "date" -->
 <script>
-    var today = new Date().toISOString().split('T')[0];
+    const today = new Date().toISOString().split('T')[0];
     document.getElementById("exitDate").setAttribute("min", today);
 </script>
 

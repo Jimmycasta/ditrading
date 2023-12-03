@@ -107,6 +107,7 @@ public class TradeController {
             attributes.addFlashAttribute("message", "Trade guardado");
             trade.setEntryLength(operationMath.getDecimalQuantity(trade.getEntryPrice()));
             trade.setStopLength(operationMath.getDecimalQuantity(trade.getStopLoss()));
+            trade.setEntryDate(LocalDate.now());
             tradeService.save(trade);
             return "redirect:/trades/list";
         } else {
@@ -122,6 +123,7 @@ public class TradeController {
             trade.setStopLength(operationMath.getDecimalQuantity(trade.getStopLoss()));
             trade.setPnlLength(operationMath.getDecimalQuantity(trade.getPnlBalance()));
             trade.setDateTime(LocalDateTime.now());
+            trade.setExitDate(LocalDate.now());
             tradeService.save(trade);
             return "redirect:/trades/list";
         }
@@ -144,8 +146,8 @@ public class TradeController {
         model.addAttribute("listStrategies", listStrategies);
 
         model.addAttribute("trade", trade);
-        model.addAttribute("title", "Editar/Cerrar - trade");
-        model.addAttribute("titleAction", "Editar/Cerrar - trade");
+        model.addAttribute("title", "Cerrar/Trade");
+        model.addAttribute("titleAction", "Cerrar - trade");
         return "trades/editTrade";
     }
 

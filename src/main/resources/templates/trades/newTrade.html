@@ -100,7 +100,7 @@
                 </small>
             </div>
 
-            <!-- input Fecha/Compra -->
+            <!-- input Fecha/Compra
             <div class="col-sm w-auto">
                 <label for="entryDate" class="form-label">Fecha/Compra</label>
                 <input type="date" class="form-control form-control-sm"
@@ -110,7 +110,7 @@
                        th:errors="*{entryDate}"
                        th:class="'form-text text-warning'">
                 </small>
-            </div>
+            </div>  -->
 
             <!-- input Cantidad -->
             <div class="col-sm w-auto">
@@ -174,7 +174,7 @@
 
 <!-- Deshabilita las fechas pasadas input type = "date" -->
 <script>
-    var today = new Date().toISOString().split('T')[0];
+    const today = new Date().toISOString().split('T')[0];
     document.getElementById("entryDate").setAttribute("min",today);
 </script>
 
