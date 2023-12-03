@@ -80,7 +80,7 @@ public class operationMath {
         double reward = (takeProfit - entryPrice) * quantity;
         double risk = (entryPrice - stopLoss) * quantity;
         double riskReward = (reward / risk);
-        return "1:" + String.valueOf(Math.round(riskReward));
+        return "1:" + Math.round(riskReward);
     }
 
 }
