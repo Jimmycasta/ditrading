@@ -36,12 +36,12 @@
             <tr class="text-center">
                 <th th:class="bg-success" scope="col">#</th>
                 <th th:class="bg-success" scope="col">Símbolo</th>
-                <th th:class="bg-success" scope="col">Cant</th>
                 <th th:class="bg-success" scope="col">Intervalo</th>
                 <th th:class="bg-success" scope="col">Posición</th>
-                <th th:class="bg-success" scope="col">F/Compra</th>
-                <th th:class="bg-success" scope="col">P/Compra $</th>
                 <th th:class="bg-success" scope="col">Estrategia</th>
+                <th th:class="bg-success" scope="col">F/Compra</th>
+                <th th:class="bg-success" scope="col">Cant</th>
+                <th th:class="bg-success" scope="col">P/Compra $</th>
                 <th th:class="bg-success" scope="col">SL</th>
                 <th th:class="bg-success" scope="col">R/R</th>
                 <th th:class="bg-success" scope="col">F/Venta</th>
@@ -57,18 +57,17 @@
             <tr class="text-center align-middle" th:each="trade : ${listTrade}">
                 <td th:text="${trade.idTrade}"></td>
                 <td th:text="${trade.symbol.nameSymbol}"></td>
-                <td th:text="${#numbers.formatDecimal(trade.assetsQuantity,1,0)}"></td>
                 <td th:text="${trade.timeFrame.nameFrame}"></td>
                 <td th:text="${trade.position.namePosition}"></td>
+                <td th:text="${trade.strategy.nameStrategy}"></td>
                 <td th:text="${trade.entryDate}"></td>
+                <td th:text="${#numbers.formatDecimal(trade.assetsQuantity,1,0)}"></td>
 
                 <!-- Inicio td entryPrice -->
                 <td th:text="${trade.entryLength} > 2 ? ${#numbers.formatDecimal(trade.entryPrice,1,'COMMA',6,'POINT') + ' ' + '$'}
                   : ${#numbers.formatDecimal(trade.entryPrice,1,'COMMA',2,'POINT') + ' ' + '$'}"
                     th:class="text-light"></td>
                 <!-- fin td entryPrice -->
-
-                <td th:text="${trade.strategy.nameStrategy}"></td>
 
                 <!-- Inicio td stopLoss -->
                 <td th:text="${trade.stopLength} > 2  ? ${#numbers.formatDecimal(trade.stopLoss,1,'COMMA',6,'POINT') + ' ' + '$'}
@@ -108,8 +107,8 @@
                     th:text="${#numbers.formatDecimal(trade.pnlPercentage,1,'COMMA',1,'POINT') + ' ' + '%'}">
                 </td>
                 <td th:unless="${trade.pnlPercentage != null and trade.pnlPercentage >=0}" th:class="text-danger"
-                    th:text="${trade.pnlPercentage ==null} ? '---':
-                     ${#numbers.formatDecimal(trade.pnlPercentage,1,'COMMA',1,'POINT') + ' ' + '%'}">
+                    th:text="${trade.pnlPercentage ==null} ? '---'
+                    : ${#numbers.formatDecimal(trade.pnlPercentage,1,'COMMA',1,'POINT') + ' ' + '%'}">
                 </td>
                 <!--Fin td pnlPercentage -->
 
