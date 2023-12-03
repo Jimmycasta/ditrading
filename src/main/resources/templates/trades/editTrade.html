@@ -153,15 +153,16 @@
                 </select>
             </div> <!--Fin input status -->
 
-            <div class="mb-2 ">
-                <button class="btn btn-primary btn-sm" type="submit" style="font-size: 14px;">Guardar</button>
-            </div>
             <input type="hidden" th:field="*{symbol}">
             <input type="hidden" th:field="*{assetsQuantity}">
             <input type="hidden" th:field="*{timeFrame}">
             <input type="hidden" th:field="*{position}">
             <input type="hidden" th:field="*{entryPrice}">
-            <input type="hidden" th:field="*{idTrade}" id="idTrade" name="idTrade">
+            <input type="hidden" th:field="*{idTrade}">
+
+            <div class="mb-2 ">
+                <button class="btn btn-primary btn-sm" type="submit" style="font-size: 14px;">Guardar</button>
+            </div>
         </form>
     </div> <!-- Fin card-body del from -->
 </div> <!-- Fin card del from -->

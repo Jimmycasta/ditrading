@@ -71,7 +71,7 @@ public class operationMath {
 
     //Retorna el último balance(last_balance) que es la suma de los Pnl positivos y resta de los negativos
     // de cada unos de los trades cerrados hasta ese momento.
-    public static double getLastBalance(Double takeProfit, Double entryPrice, Double assetsQuantity) {
+    public static double getLastBalance(double takeProfit, double entryPrice, double assetsQuantity) {
         return (tradeService.getLastBalance(startDate, endDate)) + ((takeProfit - entryPrice) * assetsQuantity);
     }
 

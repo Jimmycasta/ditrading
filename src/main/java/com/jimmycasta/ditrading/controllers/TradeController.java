@@ -95,38 +95,36 @@ public class TradeController {
             List<TimeFrameEntity> listFrames = timeFrameService.getAll();
             List<PositionEntity> listPositions = positionService.getAll();
             List<StrategyEntity> listStrategies = strategyService.getAll();
-
             model.addAttribute("listSymbols", listSymbols);
             model.addAttribute("listFrames", listFrames);
             model.addAttribute("listPositions", listPositions);
             model.addAttribute("listStrategies", listStrategies);
-
             model.addAttribute("title", "Nuevo trade");
             model.addAttribute("titleAction", "Nuevo trade");
             return "trades/newTrade";
-        }
-        if (trade.getTakeProfit() == null) {
+        } else if (trade.getTakeProfit() == null) {
+
             attributes.addFlashAttribute("message", "Trade guardado");
             trade.setEntryLength(operationMath.getDecimalQuantity(trade.getEntryPrice()));
             trade.setStopLength(operationMath.getDecimalQuantity(trade.getStopLoss()));
             tradeService.save(trade);
             return "redirect:/trades/list";
+        } else {
 
+            attributes.addFlashAttribute("message", "Trade guardado");
+            trade.setReturnInvestment(operationMath.diffPercent(trade.getTakeProfit(), trade.getEntryPrice()));
+            trade.setPnlBalance(operationMath.calculatePnl(trade.getTakeProfit(), trade.getEntryPrice(), trade.getAssetsQuantity()));
+            trade.setPnlPercentage(operationMath.diffPercent(trade.getTakeProfit(), trade.getEntryPrice()));
+            trade.setLastBalance(operationMath.getLastBalance(trade.getTakeProfit(), trade.getEntryPrice(), trade.getAssetsQuantity()));
+            trade.setRiskReward(operationMath.getRiskReward(trade.getEntryPrice(), trade.getTakeProfit(), trade.getStopLoss()));
+            trade.setProfitLength(operationMath.getDecimalQuantity(trade.getTakeProfit()));
+            trade.setEntryLength(operationMath.getDecimalQuantity(trade.getEntryPrice()));
+            trade.setStopLength(operationMath.getDecimalQuantity(trade.getStopLoss()));
+            trade.setPnlLength(operationMath.getDecimalQuantity(trade.getPnlBalance()));
+            trade.setDateTime(LocalDateTime.now());
+            tradeService.save(trade);
+            return "redirect:/trades/list";
         }
-        attributes.addFlashAttribute("message", "Trade guardado");
-        trade.setReturnInvestment(operationMath.diffPercent(trade.getTakeProfit(), trade.getEntryPrice()));
-        trade.setPnlBalance(operationMath.calculatePnl(trade.getTakeProfit(), trade.getEntryPrice(), trade.getAssetsQuantity()));
-        trade.setPnlPercentage(operationMath.diffPercent(trade.getTakeProfit(), trade.getEntryPrice()));
-        trade.setLastBalance(operationMath.getLastBalance(trade.getTakeProfit(), trade.getEntryPrice(), trade.getAssetsQuantity()));
-        trade.setRiskReward(operationMath.getRiskReward(trade.getEntryPrice(), trade.getTakeProfit(), trade.getStopLoss()));
-
-        trade.setProfitLength(operationMath.getDecimalQuantity(trade.getTakeProfit()));
-        trade.setEntryLength(operationMath.getDecimalQuantity(trade.getEntryPrice()));
-        trade.setStopLength(operationMath.getDecimalQuantity(trade.getStopLoss()));
-        trade.setPnlLength(operationMath.getDecimalQuantity(trade.getPnlBalance()));
-        trade.setDateTime(LocalDateTime.now());
-        tradeService.save(trade);
-        return "redirect:/trades/list";
     }
 
     @GetMapping("/edit/{id}")
