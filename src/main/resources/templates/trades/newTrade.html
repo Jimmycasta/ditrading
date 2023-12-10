@@ -100,6 +100,22 @@
                 </small>
             </div>
 
+            <!-- input chartPattern-->
+            <div class="col-sm w-auto">
+                <label for="chartPattern" class="form-label">Patrón/grafico</label>
+                <select class="form-select form-select-sm" aria-label="strategy"
+                        id="chartPattern" th:field="*{chartPattern}">
+                    <option selected value="">None</option>
+                    <option th:each="pattern : ${listChartPattern}"
+                            th:value="${pattern.idPattern}"
+                            th:text="${pattern.namePattern}"></option>
+                </select>
+                <small th:if="${#fields.hasErrors('strategy')}"
+                       th:errors="*{chartPattern}"
+                       th:class="'form-text text-warning'">
+                </small>
+            </div>
+
             <!-- input Fecha/Compra
             <div class="col-sm w-auto">
                 <label for="entryDate" class="form-label">Fecha/Compra</label>

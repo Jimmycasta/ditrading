@@ -109,4 +109,10 @@ public class TradeEntity implements Serializable {
     @JoinColumn(name = "id_strategy")
     private StrategyEntity strategy;
 
+
+    @NotNull(message = "Ingrese Patrón/Grafico")
+    @ManyToOne
+    @JoinColumn(name = "id_pattern")
+    private ChartPatternEntity chartPattern;
+
 }

@@ -30,19 +30,23 @@ public class TradeController {
     private final PositionService positionService;
     private final StrategyService strategyService;
 
+    private final ChartPatternService chartPatternService;
+
 
     @Autowired
     public TradeController(TradeService tradeService,
                            SymbolService symbolService,
                            TimeFrameService timeFrameService,
                            PositionService positionService,
-                           StrategyService strategyService) {
+                           StrategyService strategyService,
+                           ChartPatternService chartPatternService) {
 
         this.tradeService = tradeService;
         this.symbolService = symbolService;
         this.timeFrameService = timeFrameService;
         this.positionService = positionService;
         this.strategyService = strategyService;
+        this.chartPatternService = chartPatternService;
     }
 
     @GetMapping("/list")
@@ -75,6 +79,7 @@ public class TradeController {
         List<TimeFrameEntity> listFrames = timeFrameService.getAll();
         List<PositionEntity> listPositions = positionService.getAll();
         List<StrategyEntity> listStrategies = strategyService.getAll();
+        List<ChartPatternEntity> listChartPattern = chartPatternService.getAll();
 
         model.addAttribute("listSymbols", listSymbols);
         model.addAttribute("listFrames", listFrames);
@@ -82,6 +87,7 @@ public class TradeController {
         model.addAttribute("listStrategies", listStrategies);
         model.addAttribute("title", "Nuevo trade");
         model.addAttribute("titleAction", "Nuevo trade");
+        model.addAttribute("listChartPattern", listChartPattern);
         return "trades/newTrade";
     }
 
@@ -95,6 +101,8 @@ public class TradeController {
             List<TimeFrameEntity> listFrames = timeFrameService.getAll();
             List<PositionEntity> listPositions = positionService.getAll();
             List<StrategyEntity> listStrategies = strategyService.getAll();
+            List<ChartPatternEntity> listChartPattern = chartPatternService.getAll();
+            model.addAttribute("listChartPattern",listChartPattern);
             model.addAttribute("listSymbols", listSymbols);
             model.addAttribute("listFrames", listFrames);
             model.addAttribute("listPositions", listPositions);
@@ -117,7 +125,7 @@ public class TradeController {
             trade.setPnlBalance(operationMath.calculatePnl(trade.getTakeProfit(), trade.getEntryPrice(), trade.getAssetsQuantity()));
             trade.setPnlPercentage(operationMath.diffPercent(trade.getTakeProfit(), trade.getEntryPrice()));
             trade.setLastBalance(operationMath.getLastBalance(trade.getTakeProfit(), trade.getEntryPrice(), trade.getAssetsQuantity()));
-            trade.setRiskReward(operationMath.getRiskReward(trade.getEntryPrice(), trade.getTakeProfit(), trade.getStopLoss(),trade.getAssetsQuantity()));
+            trade.setRiskReward(operationMath.getRiskReward(trade.getEntryPrice(), trade.getTakeProfit(), trade.getStopLoss(), trade.getAssetsQuantity()));
             trade.setProfitLength(operationMath.getDecimalQuantity(trade.getTakeProfit()));
             trade.setEntryLength(operationMath.getDecimalQuantity(trade.getEntryPrice()));
             trade.setStopLength(operationMath.getDecimalQuantity(trade.getStopLoss()));

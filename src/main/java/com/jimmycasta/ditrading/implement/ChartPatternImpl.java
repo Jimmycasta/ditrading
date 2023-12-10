@@ -8,6 +8,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -21,8 +22,13 @@ public class ChartPatternImpl implements ChartPatternService {
     }
 
     @Override
-    public Page<ChartPatternEntity> getAll(Pageable pageable) {
+    public Page<ChartPatternEntity> getAllPage(Pageable pageable) {
         return chartPatternRepository.findAll(pageable);
+    }
+
+    @Override
+    public List<ChartPatternEntity> getAll() {
+        return chartPatternRepository.findAll();
     }
 
     @Override

@@ -34,7 +34,7 @@ public class ChartPatternController {
 
         int page = params.get("page") != null ? (Integer.parseInt(params.get("page").toString()) - 1) : 0;
         PageRequest pageRequest = PageRequest.of(page, 10);
-        Page<ChartPatternEntity> listPattern = chartPatternService.getAll(pageRequest);
+        Page<ChartPatternEntity> listPattern = chartPatternService.getAllPage(pageRequest);
 
         int totalPages = listPattern.getTotalPages();
         if (totalPages > 0) {

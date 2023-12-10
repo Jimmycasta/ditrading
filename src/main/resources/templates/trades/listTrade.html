@@ -39,14 +39,15 @@
                 <th th:class="bg-success" scope="col">Intervalo</th>
                 <th th:class="bg-success" scope="col">Posición</th>
                 <th th:class="bg-success" scope="col">Estrategia</th>
+                <th th:class="bg-success" scope="col">Patrón/Grafico</th>
                 <th th:class="bg-success" scope="col">F/Compra</th>
                 <th th:class="bg-success" scope="col">Cant</th>
                 <th th:class="bg-success" scope="col">P/Compra $</th>
                 <th th:class="bg-success" scope="col">SL</th>
-                <th th:class="bg-success" scope="col">R/R</th>
                 <th th:class="bg-success" scope="col">F/Venta</th>
+                <th th:class="bg-success" scope="col">R/R</th>
                 <th th:class="bg-success" scope="col">TP</th>
-               <!-- <th th:class="bg-success" scope="col">RoI %</th> -->
+                <!-- <th th:class="bg-success" scope="col">RoI %</th> -->
                 <th th:class="bg-success" scope="col">PnL %</th>
                 <th th:class="bg-success" scope="col">PnL $</th>
                 <th th:class="bg-success" scope="col">Estado</th>
@@ -60,6 +61,7 @@
                 <td th:text="${trade.timeFrame.nameFrame}"></td>
                 <td th:text="${trade.position.namePosition}"></td>
                 <td th:text="${trade.strategy.nameStrategy}"></td>
+                <td th:text="${trade.chartPattern.namePattern}"></td>
                 <td th:text="${trade.entryDate}"></td>
                 <td th:text="${#numbers.formatDecimal(trade.assetsQuantity,1,'COMMA',0,'POINT')}"></td>
 
@@ -74,13 +76,13 @@
                   : ${#numbers.formatDecimal(trade.stopLoss,1,'COMMA',2,'POINT') + ' ' + '$'}  "></td>
                 <!-- fin td stopLoss -->
 
-                <!-- Inicio td riskReward -->
-                <td th:if="${trade.riskReward == null}" th:class="text-danger" th:text="'---'"></td>
-                <td th:unless="${trade.riskReward == null}" th:text="${trade.riskReward}"></td>
-
                 <!-- Inicio td exitDate -->
                 <td th:if="${trade.exitDate == null}" th:class="text-danger" th:text="'---'"></td>
                 <td th:unless="${trade.exitDate == null}" th:text="${trade.exitDate}"></td>
+
+                <!-- Inicio td riskReward -->
+                <td th:if="${trade.riskReward == null}" th:class="text-danger" th:text="'---'"></td>
+                <td th:unless="${trade.riskReward == null}" th:text="${trade.riskReward}"></td>
 
                 <!-- Inicio td takeProfit -->
                 <td th:if="${trade.takeProfit != null and trade.takeProfit > 0 }" th:class="text-light"
