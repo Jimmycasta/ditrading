@@ -47,6 +47,7 @@ public class operationMath {
         statisticsDTO.setAllTradesCurrentMonth(tradeService.getAllTradesCurrentMth(startDate, endDate));
         statisticsDTO.setTopInstrumentCurrentMth(tradeService.getTopInstrumentCurrentMth());
         statisticsDTO.setTopStrategiesCurrentMth(tradeService.getTopStrategiesCurrentMth());
+        statisticsDTO.setTopChartPatternsCurrentMth(tradeService.getTopChartPatternsCurrentMth());
 
         List<Boolean> openAndCloseList = tradeService.getOpenAndCloseCurrentMth(startDate, endDate);
         int openQuantity = 0;

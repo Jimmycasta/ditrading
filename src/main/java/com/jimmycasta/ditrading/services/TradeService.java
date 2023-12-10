@@ -1,5 +1,6 @@
 package com.jimmycasta.ditrading.services;
 
+import com.jimmycasta.ditrading.entities.ChartPatternEntity;
 import com.jimmycasta.ditrading.entities.TradeEntity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -29,6 +30,8 @@ public interface TradeService {
     List<String> getTopInstrumentCurrentMth();
 
     List<String> getTopStrategiesCurrentMth();
+
+    List<String>getTopChartPatternsCurrentMth();
 
     double getLastBalance(LocalDate startDate, LocalDate endDate);
 

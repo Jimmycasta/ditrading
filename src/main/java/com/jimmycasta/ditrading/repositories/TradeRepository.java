@@ -41,6 +41,13 @@ public interface TradeRepository extends JpaRepository<TradeEntity, Integer> {
             " ORDER BY sum(trades.id_strategy) desc limit 3;", nativeQuery = true)
     List<String> getTopStrategiesCurrentMth();
 
+    //Consulta el Top de los Patrones/Gráficos más usados.
+    @Query(value = "SELECT name_pattern FROM chart_patterns INNER JOIN trades" +
+            " ON chart_patterns.id_pattern = trades.id_pattern\n" +
+            "WHERE chart_patterns.id_pattern = trades.id_pattern GROUP BY chart_patterns.id_pattern" +
+            " ORDER BY sum(trades.id_pattern) desc limit 3;", nativeQuery = true)
+    List<String> getTopChartPatternCurrentMth();
+
 
     //Retorna el último balance (last_balance) es la suma de todos los trades cerrados
     @Query(value = "SELECT last_balance FROM trades WHERE date_time = (SELECT MAX(date_time) from trades" +

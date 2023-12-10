@@ -78,6 +78,11 @@ public class TradeServiceImpl implements TradeService {
     }
 
     @Override
+    public List<String> getTopChartPatternsCurrentMth() {
+        return tradeRepository.getTopChartPatternCurrentMth();
+    }
+
+    @Override
     public double getLastBalance(LocalDate startDate, LocalDate endDate) {
         Optional<Double> optional = tradeRepository.getLastBalance(startDate, endDate);
         if (optional.isPresent()) {

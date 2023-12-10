@@ -1,5 +1,6 @@
 package com.jimmycasta.ditrading.dto;
 
+import com.jimmycasta.ditrading.entities.ChartPatternEntity;
 import lombok.Data;
 
 import java.util.List;
@@ -22,6 +23,8 @@ public class StatisticsDTO {
     private List<String> topStrategiesCurrentMth;
 
     private List<String> topInstrumentCurrentMth;
+
+    private List<String> topChartPatternsCurrentMth;
 
 
 

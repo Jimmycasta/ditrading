@@ -57,6 +57,16 @@
                         </tr>
 
                         <tr>
+                            <td>Top 3 Patrones/Gráficos</td>
+                            <td>
+                                <span th:each="patterns : ${statisticsDTO.getTopChartPatternsCurrentMth()}"
+                                      th:text="${patterns}" class="badge rounded-pill text-bg-primary"
+                                      style="font-size: 12px; margin-right: 10px;">
+                                </span>
+                            </td>
+                        </tr>
+
+                        <tr>
                             <td>Top 3 Estrategias</td>
                             <td>
                                 <span th:each="strategy : ${statisticsDTO.getTopStrategiesCurrentMth()}"
