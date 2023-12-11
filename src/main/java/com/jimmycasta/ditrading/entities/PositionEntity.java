@@ -21,9 +21,9 @@ public class PositionEntity {
     private Integer idPosition;
 
     @NotEmpty(message = "Ingrese la posición")
-    @Column(name = "name_position", nullable = false, length = 50, unique = true)
+    @Column(name = "name_position", nullable = false, length = 100, unique = true)
     private String namePosition;
 
-    @Column(name = "detail_position", length = 50)
+    @Column(name = "detail_position", length = 100)
     private String detailPosition;
 }

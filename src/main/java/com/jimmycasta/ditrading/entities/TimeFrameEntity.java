@@ -21,10 +21,10 @@ public class TimeFrameEntity {
     private Integer idFrame;
 
     @NotEmpty(message = "Ingrese un intervalo de tiempo")
-    @Column(name = "name_frame", nullable = false, length = 50, unique = true)
+    @Column(name = "name_frame", nullable = false, length = 100, unique = true)
     private String nameFrame;
 
-    @Column(name = "detail_frame", length = 50)
+    @Column(name = "detail_frame", length = 100)
     private String detailFrame;
 
 

@@ -21,7 +21,7 @@ public class ChartPatternEntity {
     private Integer idPattern;
 
     @NotBlank(message = "Ingrese un nombre de patron")
-    @Column(name = "name_pattern",nullable = false, length = 50, unique = true)
+    @Column(name = "name_pattern",nullable = false, length = 100, unique = true)
     private String namePattern;
 
     @Column(name = "detail_pattern", length = 100)

@@ -19,10 +19,10 @@ public class StrategyEntity {
     @Column(name = "id_strategy", nullable = false, length = 15)
     private Integer idStrategy;
 
-    @Column(name = "name_strategy", length = 50, unique = true)
+    @Column(name = "name_strategy", length = 100, unique = true)
     private String nameStrategy;
 
-    @Column(name = "detail_strategy", length = 50)
+    @Column(name = "detail_strategy", length = 100)
     private String detailStrategy;
 }
 

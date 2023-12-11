@@ -19,10 +19,10 @@ public class SymbolEntity {
     @Column(name = "id_symbol", nullable = false, length = 15)
     private Integer idSymbol;
 
-    @Column(name = "name_symbol", length = 50, unique = true)
+    @Column(name = "name_symbol", length = 100, unique = true)
     private String nameSymbol;
 
-    @Column(name = "detail_symbol", length = 50)
+    @Column(name = "detail_symbol", length = 100)
     private String detailSymbol;
 
 }
